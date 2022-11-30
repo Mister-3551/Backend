@@ -21,8 +21,8 @@ public class LevelStatisticsController {
     }
 
     @PostMapping("/web-get-levels-statistics")
-    public ArrayList<Level> getLevelsStatistics(@RequestParam(name = "gameToken") String gameToken) {
-        return levelStatisticsService.getLevelsStatistics(gameToken);
+    public ArrayList<Level> getLevelsStatistics(@RequestParam(name = "webToken") String webToken) {
+        return levelStatisticsService.getLevelsStatistics(webToken);
     }
 
     @PostMapping("/web-get-levels-statistics-data")

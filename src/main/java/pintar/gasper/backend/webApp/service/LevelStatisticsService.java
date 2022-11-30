@@ -21,8 +21,8 @@ public class LevelStatisticsService {
         this.levelRepository = levelRepository;
     }
 
-    public ArrayList<Level> getLevelsStatistics(String gameToken) {
-        var list = levelRepository.getLevels(gameToken);
+    public ArrayList<Level> getLevelsStatistics(String webToken) {
+        var list = levelRepository.getLevels(webToken);
         ArrayList<Level> levels = new ArrayList();
         for (String string : list) {
             var word = string.split(",");
