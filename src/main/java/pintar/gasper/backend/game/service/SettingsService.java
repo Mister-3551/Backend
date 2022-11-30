@@ -6,8 +6,6 @@ import pintar.gasper.backend.game.object.Level;
 import pintar.gasper.backend.game.object.Setting;
 import pintar.gasper.backend.game.repository.SettingsRepository;
 
-import java.util.ArrayList;
-
 @Component
 public class SettingsService {
 
