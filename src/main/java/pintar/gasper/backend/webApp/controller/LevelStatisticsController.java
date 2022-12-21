@@ -21,12 +21,17 @@ public class LevelStatisticsController {
     }
 
     @PostMapping("/web-get-levels-statistics")
-    public ArrayList<Level> getLevelsStatistics(@RequestParam(name = "webToken") String webToken) {
-        return levelStatisticsService.getLevelsStatistics(webToken);
+    public ArrayList<Level> getLevelsStatistics(@RequestParam(name = "idUserOrUsername") String idUserOrUsername) {
+        return levelStatisticsService.getLevelsStatistics(idUserOrUsername);
     }
 
     @PostMapping("/web-get-levels-statistics-data")
-    public ArrayList<LevelStatistics> getLevelsStatisticsData(@RequestParam(name = "idUser") String idUser, @RequestParam(name = "mapName") String mapName) {
-        return levelStatisticsService.getLevelsStatisticsData(idUser, mapName);
+    public ArrayList<LevelStatistics> getLevelsStatisticsData(@RequestParam(name = "idUserOrUsername") String idUserOrUsername, @RequestParam(name = "mapName") String mapName) {
+        return levelStatisticsService.getLevelsStatisticsData(idUserOrUsername, mapName);
+    }
+
+    @PostMapping("/web-get-levels-statistics-data-level-name")
+    public String getLevelName(@RequestParam(name = "mapName") String mapName) {
+        return levelStatisticsService.getLevelName(mapName);
     }
 }

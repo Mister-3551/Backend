@@ -1,23 +1,49 @@
 package pintar.gasper.backend.webApp.object;
 
-import javax.persistence.Column;
-
 public class PlayerStatistics {
 
+    private String username;
+    private int rank;
+    private int currentXp;
+    private int nextLevelXp;
     private int kills;
     private int deaths;
     private int wins;
     private int losses;
     private int highestStreak;
     private int mostKills;
+    private float ratio;
 
-    public PlayerStatistics(int kills, int deaths, int wins, int losses, int highestStreak, int mostKills) {
+    public PlayerStatistics() {}
+
+    public PlayerStatistics(String username, int rank, int currentXp, int nextLevelXp, int kills, int deaths, int wins, int losses, int highestStreak, int mostKills, float ratio) {
+        this.username = username;
+        this.rank = rank;
+        this.currentXp = currentXp;
+        this.nextLevelXp = nextLevelXp;
         this.kills = kills;
         this.deaths = deaths;
         this.wins = wins;
         this.losses = losses;
         this.highestStreak = highestStreak;
         this.mostKills = mostKills;
+        this.ratio = ratio;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public int getRank() {
+        return rank;
+    }
+
+    public int getCurrentXp() {
+        return currentXp;
+    }
+
+    public int getNextLevelXp() {
+        return nextLevelXp;
     }
 
     public int getKills() {
@@ -42,5 +68,9 @@ public class PlayerStatistics {
 
     public int getMostKills() {
         return mostKills;
+    }
+
+    public float getRatio() {
+        return ratio;
     }
 }

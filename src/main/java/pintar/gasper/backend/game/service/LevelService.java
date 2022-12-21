@@ -17,8 +17,8 @@ public class LevelService {
         this.repository = repository;
     }
 
-    public ArrayList<Level> getLevels(String gameToken) {
-        var list = repository.getLevels(gameToken);
+    public ArrayList<Level> getLevels(String idUser) {
+        var list = repository.getLevels(idUser);
         ArrayList<Level> levels = new ArrayList();
         for (String string : list) {
             var word = string.split(",");

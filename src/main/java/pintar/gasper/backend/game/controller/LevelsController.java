@@ -18,7 +18,7 @@ public class LevelsController {
     }
 
     @PostMapping("/get-levels")
-    public ArrayList<Level> getLevels(@RequestParam(name = "gameToken") String gameToken) {
-        return service.getLevels(gameToken);
+    public ArrayList<Level> getLevels(@RequestParam(name = "idUser") String idUser) {
+        return service.getLevels(idUser);
     }
 }

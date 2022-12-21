@@ -18,7 +18,7 @@ public class ShopController {
         this.service = service;
     }
 
-    @RequestMapping(value = "/getUnits")
+    @RequestMapping(value = "/get-units")
     public ArrayList<Unit> getUnits() {
         return service.getUnits();
     }

@@ -21,8 +21,8 @@ public class LevelStatisticsService {
         this.levelRepository = levelRepository;
     }
 
-    public ArrayList<Level> getLevelsStatistics(String webToken) {
-        var list = levelRepository.getLevels(webToken);
+    public ArrayList<Level> getLevelsStatistics(String idUserOrUsername) {
+        var list = levelRepository.getLevels(idUserOrUsername);
         ArrayList<Level> levels = new ArrayList();
         for (String string : list) {
             var word = string.split(",");
@@ -31,13 +31,19 @@ public class LevelStatisticsService {
         return levels;
     }
 
-    public ArrayList<LevelStatistics> getLevelsStatisticsData(String idUser, String mapName) {
-        var list = levelsStatisticsRepository.getLevelsStatistics(idUser, mapName);
+    public ArrayList<LevelStatistics> getLevelsStatisticsData(String idUserOrUsername, String mapName) {
+        String[] list;
+        if (idUserOrUsername.matches("-?\\d+")) list = levelsStatisticsRepository.getLevelsStatistics(idUserOrUsername, mapName);
+        else list = levelsStatisticsRepository.getWantedLevelsStatistics(idUserOrUsername, mapName);
         ArrayList<LevelStatistics> levelStatistics = new ArrayList();
         for (String string : list) {
             var word = string.split(",");
-            levelStatistics.add(new LevelStatistics(word[0], word[1], Integer.parseInt(word[2]), Integer.parseInt(word[3]), Integer.parseInt(word[4])));
+            levelStatistics.add(new LevelStatistics(word[0], Integer.parseInt(word[1]), Integer.parseInt(word[2]), Integer.parseInt(word[3])));
         }
         return levelStatistics;
+    }
+
+    public String getLevelName(String mapName) {
+        return levelsStatisticsRepository.getLevelName(mapName);
     }
 }

@@ -18,7 +18,7 @@ public class SettingsController {
     }
 
     @PostMapping("/get-settings")
-    public Setting getLevels(@RequestParam(name = "gameToken") String gameToken) {
-        return service.getSettings(gameToken);
+    public Setting getLevels(@RequestParam(name = "idUser") String idUser) {
+        return service.getSettings(idUser);
     }
 }

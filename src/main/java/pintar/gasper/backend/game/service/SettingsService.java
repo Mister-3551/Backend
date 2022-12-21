@@ -15,8 +15,8 @@ public class SettingsService {
         this.repository = repository;
     }
 
-    public Setting getSettings(String gameToken) {
-        var list =  repository.getSettings(gameToken);
+    public Setting getSettings(String idUser) {
+        var list =  repository.getSettings(idUser);
         Setting settings = new Setting();
         for (String string : list) {
             var word = string.split(",");

@@ -11,8 +11,6 @@ public interface SettingsRepository extends JpaRepository<Settings, String> {
 
     @Query(value = "SELECT s.key_left, s.key_right, s.key_jump, s.key_shoot, s.music, s.sound_effect, s.language " +
             "FROM settings s " +
-            "WHERE s.id_user = (SELECT DISTINCT t.id_user " +
-            "FROM tokens t " +
-            "WHERE t.game_token = :gameToken)", nativeQuery = true)
-    String[] getSettings(String gameToken);
+            "WHERE s.id_user = :idUser", nativeQuery = true)
+    String[] getSettings(String idUser);
 }
