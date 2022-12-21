@@ -12,8 +12,11 @@ import javax.transaction.Transactional;
 public interface NotificationsRepository extends JpaRepository<Notifications, String> {
 
     @Query(value = "SELECT n.id, (SELECT u.username " +
-            "        FROM users u " +
-            "        WHERE u.id = n.id_user) AS username, n.type, n.created_at FROM notifications n " +
+            "FROM users u " +
+            "WHERE u.id = n.id_user) AS username, n.type, " +
+            "TIME_FORMAT(SEC_TO_TIME(TIMESTAMPDIFF(SECOND, n.created_at, CURRENT_TIMESTAMP)), '%H') as hours, " +
+            "TIME_FORMAT(SEC_TO_TIME(TIMESTAMPDIFF(SECOND, n.created_at, CURRENT_TIMESTAMP)), '%i') as minutes " +
+            "FROM notifications n " +
             "WHERE n.id_friend = :idUser " +
             "ORDER BY n.created_at DESC", nativeQuery = true)
     String[] getUserNotifications(String idUser);
@@ -29,8 +32,8 @@ public interface NotificationsRepository extends JpaRepository<Notifications, St
     @Transactional
     @Query(value = "DELETE FROM notifications " +
             "WHERE id_friend = (SELECT u.id " +
-            "                 FROM users u " +
-            "                 WHERE u.username = :username) AND id_user = :idUser AND type = :type", nativeQuery = true)
+            "                   FROM users u " +
+            "                   WHERE u.username = :username) AND id_user = :idUser AND type = :type", nativeQuery = true)
     int deleteUserNotifications(String idUser, String username, String type);
 
     @Modifying
