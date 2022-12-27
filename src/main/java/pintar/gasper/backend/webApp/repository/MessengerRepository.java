@@ -8,7 +8,7 @@ import pintar.gasper.backend.webApp.entity.Messenger;
 @Repository
 public interface MessengerRepository extends JpaRepository<Messenger, String> {
 
-    @Query(value = "SELECT u.id, u.username, u.rank FROM messenger m " +
+    @Query(value = "SELECT u.id, u.username, u.rank, u.picture FROM messenger m " +
             "LEFT JOIN users u ON u.id = m.id_friend " +
             "WHERE m.id_user = :idUser", nativeQuery = true)
     String[] getUserMessengerFriends(String idUser);

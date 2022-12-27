@@ -41,7 +41,7 @@ public class StatisticsService {
         ArrayList<LeaderBoard> leaderBoard = new ArrayList();
         for (String string : list) {
             var word = string.split(",");
-            leaderBoard.add(new LeaderBoard(Integer.parseInt(word[0]), word[1], Integer.parseInt(word[2]), Integer.parseInt(word[3])));
+            leaderBoard.add(new LeaderBoard(Integer.parseInt(word[0]), word[1], word[2], Integer.parseInt(word[3]), Integer.parseInt(word[4])));
         }
         return leaderBoard;
     }
@@ -51,9 +51,9 @@ public class StatisticsService {
         for (String string : list) {
             var word = string.split(",");
             playerStats = new PlayerStatistics(word[0], Integer.parseInt(word[1]), Integer.parseInt(word[2]),
-                    Integer.parseInt(word[3]), Integer.parseInt(word[4]), Integer.parseInt(word[5]),
-                    Integer.parseInt(word[6]), Integer.parseInt(word[7]), Integer.parseInt(word[8]),
-                    Integer.parseInt(word[9]), Float.parseFloat(word[10]));
+                    Integer.parseInt(word[3]), word[4], Integer.parseInt(word[5]), Integer.parseInt(word[6]),
+                    Integer.parseInt(word[7]), Integer.parseInt(word[8]), Integer.parseInt(word[9]),
+                    Integer.parseInt(word[10]), Float.parseFloat(word[11]));
         }
         return playerStats;
     }

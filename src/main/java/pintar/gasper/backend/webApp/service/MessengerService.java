@@ -21,12 +21,7 @@ public class MessengerService {
 
     public ArrayList<FollowingFollowers> getUserMessengerFriends(@RequestParam(name = "idUser") String idUser) {
         String[] list = messengerRepository.getUserMessengerFriends(idUser);
-        ArrayList<FollowingFollowers> friends = new ArrayList();
-        for (String string : list) {
-            var word = string.split(",");
-            friends.add(new FollowingFollowers(Long.parseLong(word[0]), word[1], Integer.parseInt(word[2])));
-        }
-        return friends;
+        return FollowingFollowersService.listOfFollowingFollowers(list);
     }
 
     public ArrayList<Message> getConversation(String idUser, String username) {

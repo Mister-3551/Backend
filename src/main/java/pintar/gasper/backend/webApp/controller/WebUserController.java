@@ -1,13 +1,20 @@
 package pintar.gasper.backend.webApp.controller;
 
+import org.apache.tomcat.util.http.fileupload.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import pintar.gasper.backend.webApp.object.SearchUser;
 import pintar.gasper.backend.webApp.object.UserAccount;
 import pintar.gasper.backend.webApp.service.WebUserService;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 @RestController
@@ -38,5 +45,16 @@ public class WebUserController {
     @PostMapping("/web-sign-out")
     public String webSignOut(@RequestParam(name = "idUser") String idUser) {
         return "empty";
+    }
+
+    @PostMapping(value = "/web-update-user-account-data")
+    public String updateUserAccountData(@RequestParam(name = "idUser") String idUser, @RequestParam(name = "fullName") String fullName, @RequestParam(name = "profileImage", required = false) MultipartFile profileImage) throws Exception {
+        return webUserService.updateUserAccountData(idUser, fullName, profileImage);
+    }
+
+    @GetMapping("/profile-images/{filename}")
+    public ResponseEntity<byte[]> getImage(@PathVariable("filename") String filename) throws Exception {
+        byte[] image = Files.readAllBytes(Paths.get("./images/profile-pictures/" + filename));
+        return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG).body(image);
     }
 }

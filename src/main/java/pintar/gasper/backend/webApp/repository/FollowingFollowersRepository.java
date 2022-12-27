@@ -59,24 +59,24 @@ public interface FollowingFollowersRepository extends JpaRepository<FollowingFol
             "                      WHERE u.username = :username)", nativeQuery = true)
     void removeUserFollow(String idUser, String username);
 
-    @Query(value = "SELECT u.id, u.username, u.rank FROM followers_following ff " +
+    @Query(value = "SELECT u.id, u.username, u.rank, u.picture FROM followers_following ff " +
             "LEFT JOIN users u ON u.id = ff.id_user " +
             "WHERE ff.id_friend = :idUser", nativeQuery = true)
     String[] getUserFollowersById(String idUser);
 
-    @Query(value = "SELECT u.id, u.username, u.rank FROM followers_following ff " +
+    @Query(value = "SELECT u.id, u.username, u.rank, u.picture FROM followers_following ff " +
             "LEFT JOIN users u ON u.id = ff.id_user " +
             "WHERE ff.id_friend = (SELECT u.id " +
             "                           FROM users u " +
             "                           WHERE u.username = :username)", nativeQuery = true)
     String[] getUserFollowersByUsername(String username);
 
-    @Query(value = "SELECT u.id, u.username, u.rank FROM followers_following ff " +
+    @Query(value = "SELECT u.id, u.username, u.rank, u.picture FROM followers_following ff " +
             "LEFT JOIN users u ON u.id = ff.id_friend " +
             "WHERE ff.id_user = :idUser", nativeQuery = true)
     String[] getUserFollowingById(String idUser);
 
-    @Query(value = "SELECT u.id, u.username, u.rank FROM followers_following ff " +
+    @Query(value = "SELECT u.id, u.username, u.rank, u.picture FROM followers_following ff " +
             "LEFT JOIN users u ON u.id = ff.id_friend " +
             "WHERE ff.id_user = (SELECT u.id " +
             "                    FROM users u " +

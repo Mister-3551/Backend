@@ -52,13 +52,7 @@ public class FollowingFollowersService {
         String[] list;
         if (idUserOrUsername.matches("-?\\d+")) list = followingFollowersRepository.getUserFollowingById(idUserOrUsername);
         else list = followingFollowersRepository.getUserFollowingByUsername(idUserOrUsername);
-
-        ArrayList<FollowingFollowers> following = new ArrayList();
-        for (String string : list) {
-            var word = string.split(",");
-            following.add(new FollowingFollowers(Long.parseLong(word[0]), word[1], Integer.parseInt(word[2])));
-        }
-        return following;
+        return listOfFollowingFollowers(list);
     }
 
     public ArrayList<FollowingFollowers> getUserFollowers(String idUserOrUsername) {
@@ -66,12 +60,15 @@ public class FollowingFollowersService {
         String[] list;
         if (idUserOrUsername.matches("-?\\d+")) list = followingFollowersRepository.getUserFollowersById(idUserOrUsername);
         else list = followingFollowersRepository.getUserFollowersByUsername(idUserOrUsername);
+        return listOfFollowingFollowers(list);
+    }
 
-        ArrayList<FollowingFollowers> followers = new ArrayList();
+    public static ArrayList<FollowingFollowers> listOfFollowingFollowers(String[] list) {
+        ArrayList<FollowingFollowers> followingFollowers = new ArrayList();
         for (String string : list) {
             var word = string.split(",");
-            followers.add(new FollowingFollowers(Long.parseLong(word[0]), word[1], Integer.parseInt(word[2])));
+            followingFollowers.add(new FollowingFollowers(Long.parseLong(word[0]), word[1], Integer.parseInt(word[2]), word[3]));
         }
-        return followers;
+        return followingFollowers;
     }
 }

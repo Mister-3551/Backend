@@ -23,7 +23,7 @@ public class NotificationsService {
         ArrayList<Notifications> notifications = new ArrayList();
         for (String string : list) {
             var word = string.split(",");
-            notifications.add(new Notifications(Long.parseLong(word[0]), word[1], Integer.parseInt(word[2]), calculateTime(Integer.parseInt(word[3]), Integer.parseInt(word[4]))));
+            notifications.add(new Notifications(Long.parseLong(word[0]), word[1], word[2], Integer.parseInt(word[3]), calculateTime(Integer.parseInt(word[4]), Integer.parseInt(word[5]), Integer.parseInt(word[6]), Integer.parseInt(word[7]), Integer.parseInt(word[8]), Integer.parseInt(word[9]))));
         }
         return notifications;
     }
@@ -41,27 +41,20 @@ public class NotificationsService {
     }
 
 
-    private String calculateTime(int hours, int minutes) {
-        int years = 0;
-        int days = 0;
-
+    private String calculateTime(int years, int months, int weeks, int days, int hours, int minutes) {
         String date = "";
-
-        if ((hours / 24.0f) / 365.25f > 0) {
-            years += (int) ((hours / 24.0f) / 365.25f);
-            date = years + "y";
-        } else {
-            if (hours > 24) {
-                days = hours / 24;
-                hours %= 24;
-                date = days + "d";
-            } else if (hours < 1) date = minutes + "m";
-            else if (hours >= 1 && hours < 24) date = hours + "h";
-
-            if (minutes == 0) date = "less than a minute";
-            else if (minutes >= 1 && minutes < 60) date = minutes + "m";
-        }
-
+        if (years == 0) {
+            if (months == 0) {
+                if (weeks == 0) {
+                    if (days == 0) {
+                        if (hours == 0) {
+                            if (minutes == 0) date = "less than a minute";
+                            else date = minutes + "min";
+                        } else date = hours + "h";
+                    } else date = days + "d";
+                } else date = weeks + "w";
+            } else date = months + "m";
+        } else date = years + "y";
         return date + " ago";
     }
 }

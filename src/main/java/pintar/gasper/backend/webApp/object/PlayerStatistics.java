@@ -6,6 +6,7 @@ public class PlayerStatistics {
     private int rank;
     private int currentXp;
     private int nextLevelXp;
+    private String picture;
     private int kills;
     private int deaths;
     private int wins;
@@ -16,11 +17,12 @@ public class PlayerStatistics {
 
     public PlayerStatistics() {}
 
-    public PlayerStatistics(String username, int rank, int currentXp, int nextLevelXp, int kills, int deaths, int wins, int losses, int highestStreak, int mostKills, float ratio) {
+    public PlayerStatistics(String username, int rank, int currentXp, int nextLevelXp, String picture, int kills, int deaths, int wins, int losses, int highestStreak, int mostKills, float ratio) {
         this.username = username;
         this.rank = rank;
         this.currentXp = currentXp;
         this.nextLevelXp = nextLevelXp;
+        this.picture = picture;
         this.kills = kills;
         this.deaths = deaths;
         this.wins = wins;
@@ -44,6 +46,10 @@ public class PlayerStatistics {
 
     public int getNextLevelXp() {
         return nextLevelXp;
+    }
+
+    public String getPicture() {
+        return picture;
     }
 
     public int getKills() {

@@ -2,26 +2,30 @@ package pintar.gasper.backend.webApp.service;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.util.Optionals;
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
 import pintar.gasper.backend.webApp.object.SearchUser;
 import pintar.gasper.backend.webApp.object.User;
 import pintar.gasper.backend.webApp.object.UserAccount;
 import pintar.gasper.backend.webApp.repository.WebUserRepository;
+import pintar.gasper.backend.webApp.service.uploadfile.FileStorageService;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.sql.Blob;
+import java.util.*;
 
 @Component
 public class WebUserService {
 
     private WebUserRepository webUserRepository;
+    private FileStorageService fileStorageService;
 
     @Autowired
-    public WebUserService(WebUserRepository webUserRepository) {
+    public WebUserService(WebUserRepository webUserRepository, FileStorageService fileStorageService) {
         this.webUserRepository = webUserRepository;
+        this.fileStorageService = fileStorageService;
     }
 
     public String webAuthentication(String usernameEmail, String password) {
@@ -41,7 +45,7 @@ public class WebUserService {
         UserAccount userAccount = new UserAccount();
         for (String string : list) {
             var word = string.split(",");
-            userAccount = new UserAccount(word[0], word[1]);
+            userAccount = new UserAccount(word[0], word[1], word[2]);
         }
         return userAccount;
     }
@@ -51,9 +55,21 @@ public class WebUserService {
         var users = new ArrayList<SearchUser>();
         for (String string : list) {
             var word = string.split(",");
-            users.add(new SearchUser(Long.parseLong(word[0]), word[1], Integer.parseInt(word[2])));
+            users.add(new SearchUser(Long.parseLong(word[0]), word[1], Integer.parseInt(word[2]), word[3]));
         }
         return users;
+    }
+
+    public String updateUserAccountData(String idUser, String fullName, MultipartFile profileImage) throws Exception {
+        if (profileImage != null) {
+            if (profileImage.getSize() > 2097152L) return "Image size is more than 2 MB";
+            if (profileImage.getOriginalFilename().contains("..")) return "Invalid Characters";
+            if (!fileStorageService.getFileExtension(profileImage.getOriginalFilename()).equals("jpg")) return "Wrong file format";
+            String fileName = fileStorageService.storePicture(idUser, profileImage);
+            if (webUserRepository.updateProfileWithPicture(idUser, fullName, fileName) == 0) return "Couldn't update profile data";
+        }
+        if (webUserRepository.updateProfileWithoutPicture(idUser, fullName) == 0) return "Couldn't update profile data";
+        return "The account has been updated";
     }
 
     private String generateToken(Long id, String name, String username, String email) {

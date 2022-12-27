@@ -11,14 +11,18 @@ import javax.transaction.Transactional;
 @Repository
 public interface NotificationsRepository extends JpaRepository<Notifications, String> {
 
-    @Query(value = "SELECT n.id, (SELECT u.username " +
-            "FROM users u " +
-            "WHERE u.id = n.id_user) AS username, n.type, " +
-            "TIME_FORMAT(SEC_TO_TIME(TIMESTAMPDIFF(SECOND, n.created_at, CURRENT_TIMESTAMP)), '%H') as hours, " +
-            "TIME_FORMAT(SEC_TO_TIME(TIMESTAMPDIFF(SECOND, n.created_at, CURRENT_TIMESTAMP)), '%i') as minutes " +
-            "FROM notifications n " +
-            "WHERE n.id_friend = :idUser " +
-            "ORDER BY n.created_at DESC", nativeQuery = true)
+    @Query(value = "SELECT n.id, u.username, u.picture, n.type, " +
+            "            TIMESTAMPDIFF(YEAR, TIMESTAMP(n.created_at), NOW()) AS years, " +
+            "            MOD(TIMESTAMPDIFF(MONTH, TIMESTAMP(n.created_at), NOW()), 12) AS mohths, " +
+            "            CAST((TIMESTAMPDIFF(DAY, TIMESTAMP(n.created_at), NOW()) / 7) AS int) AS weeks, " +
+            "            TIMESTAMPDIFF(DAY, TIMESTAMP(n.created_at), NOW()) AS days, " +
+            "            MOD(TIMESTAMPDIFF(HOUR, TIMESTAMP(n.created_at), NOW()), 24) AS hours, " +
+            "            MOD(TIMESTAMPDIFF(MINUTE, TIMESTAMP(n.created_at), NOW()), 60) AS minutes, " +
+            "            MOD(TIMESTAMPDIFF(SECOND, TIMESTAMP(n.created_at), NOW()), 60) AS seconds " +
+            "            FROM notifications n " +
+            "            LEFT JOIN users u ON u.id = n.id_user " +
+            "            WHERE n.id_friend = :idUser " +
+            "            ORDER BY n.created_at DESC", nativeQuery = true)
     String[] getUserNotifications(String idUser);
 
     @Modifying
