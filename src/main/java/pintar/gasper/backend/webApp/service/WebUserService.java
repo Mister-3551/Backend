@@ -2,9 +2,9 @@ package pintar.gasper.backend.webApp.service;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.util.Optionals;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 import pintar.gasper.backend.webApp.object.SearchUser;
@@ -13,7 +13,8 @@ import pintar.gasper.backend.webApp.object.UserAccount;
 import pintar.gasper.backend.webApp.repository.WebUserRepository;
 import pintar.gasper.backend.webApp.service.uploadfile.FileStorageService;
 
-import java.sql.Blob;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.*;
 
 @Component
@@ -70,6 +71,11 @@ public class WebUserService {
         }
         if (webUserRepository.updateProfileWithoutPicture(idUser, fullName) == 0) return "Couldn't update profile data";
         return "The account has been updated";
+    }
+
+    public ResponseEntity<byte[]> getImage(String filename) throws Exception {
+        byte[] image = Files.readAllBytes(Paths.get("./images/profile-pictures/" + filename));
+        return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG).body(image);
     }
 
     private String generateToken(Long id, String name, String username, String email) {

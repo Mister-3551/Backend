@@ -1,8 +1,6 @@
 package pintar.gasper.backend.webApp.controller;
 
-import org.apache.tomcat.util.http.fileupload.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -10,11 +8,6 @@ import pintar.gasper.backend.webApp.object.SearchUser;
 import pintar.gasper.backend.webApp.object.UserAccount;
 import pintar.gasper.backend.webApp.service.WebUserService;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 
 @RestController
@@ -54,7 +47,11 @@ public class WebUserController {
 
     @GetMapping("/profile-images/{filename}")
     public ResponseEntity<byte[]> getImage(@PathVariable("filename") String filename) throws Exception {
-        byte[] image = Files.readAllBytes(Paths.get("./images/profile-pictures/" + filename));
-        return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG).body(image);
+        return webUserService.getImage(filename);
+    }
+
+    @GetMapping("/profile-images-update/{filename}")
+    public ResponseEntity<byte[]> getImageUpdate(@PathVariable("filename") String filename) throws Exception {
+        return webUserService.getImage(filename);
     }
 }

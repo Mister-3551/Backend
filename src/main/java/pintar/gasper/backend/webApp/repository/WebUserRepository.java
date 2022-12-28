@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.web.multipart.MultipartFile;
 import pintar.gasper.backend.game.entity.Users;
 import pintar.gasper.backend.webApp.object.SearchUser;
+import pintar.gasper.backend.webApp.object.UserAccount;
 
 import javax.transaction.Transactional;
 import java.sql.Blob;
