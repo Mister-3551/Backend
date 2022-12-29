@@ -2,8 +2,10 @@ package pintar.gasper.backend.webApp.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import pintar.gasper.backend.webApp.object.Notifications;
+import pintar.gasper.backend.webApp.entity.notifications.Notification;
+import pintar.gasper.backend.webApp.entity.notifications.NotificationsEntity;
 import pintar.gasper.backend.webApp.repository.NotificationsRepository;
+import pintar.gasper.backend.webApp.service.time.TimeChanger;
 
 import java.util.ArrayList;
 
@@ -17,44 +19,25 @@ public class NotificationsService {
         this.notificationsRepository = notificationsRepository;
     }
 
-    public ArrayList<Notifications> getUserNotifications(String idUser) {
-        String[] list = notificationsRepository.getUserNotifications(idUser);
+    public ArrayList<Notification> getUserNotifications(String idUser) {
+        var notifications = notificationsRepository.getUserNotifications(idUser);
+        ArrayList<Notification> newNotifications = new ArrayList<>();
 
-        ArrayList<Notifications> notifications = new ArrayList();
-        for (String string : list) {
-            var word = string.split(",");
-            notifications.add(new Notifications(Long.parseLong(word[0]), word[1], word[2], Integer.parseInt(word[3]), calculateTime(Integer.parseInt(word[4]), Integer.parseInt(word[5]), Integer.parseInt(word[6]), Integer.parseInt(word[7]), Integer.parseInt(word[8]), Integer.parseInt(word[9]))));
+        for (NotificationsEntity notification : notifications) {
+            newNotifications.add(new Notification(notification.getId(), notification.getUsername(), notification.getPicture(), notification.getType(), TimeChanger.calculateTime(notification.getYears(), notification.getMonths(), notification.getWeeks(), notification.getDays(), notification.getHours(), notification.getMinutes())));
         }
-        return notifications;
+        return newNotifications;
     }
 
-    public String insertUserNotifications(String idUser, String username, String type) {
-        return String.valueOf(notificationsRepository.insertUserNotifications(idUser, username, type));
+    public int insertUserNotifications(String idUser, String username, String type) {
+        return notificationsRepository.insertUserNotifications(idUser, username, type);
     }
 
-    public String deleteUserNotifications(String idUser, String username, String type) {
-        return String.valueOf(notificationsRepository.deleteUserNotifications(idUser, username, type));
+    public int deleteUserNotifications(String idUser, String username, String type) {
+        return notificationsRepository.deleteUserNotifications(idUser, username, type);
     }
 
-    public String deleteUserNotificationsById(String idNotification) {
-        return String.valueOf(notificationsRepository.deleteUserNotificationsById(idNotification));
-    }
-
-
-    private String calculateTime(int years, int months, int weeks, int days, int hours, int minutes) {
-        String date = "";
-        if (years == 0) {
-            if (months == 0) {
-                if (weeks == 0) {
-                    if (days == 0) {
-                        if (hours == 0) {
-                            if (minutes == 0) date = "less than a minute";
-                            else date = minutes + "min";
-                        } else date = hours + "h";
-                    } else date = days + "d";
-                } else date = weeks + "w";
-            } else date = months + "m";
-        } else date = years + "y";
-        return date + " ago";
+    public int deleteUserNotificationsById(String idNotification) {
+        return notificationsRepository.deleteUserNotificationsById(idNotification);
     }
 }

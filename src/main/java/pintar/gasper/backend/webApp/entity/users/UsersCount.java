@@ -1,11 +1,11 @@
-package pintar.gasper.backend.webApp.object;
+package pintar.gasper.backend.webApp.entity.users;
 
-public class FollowingFollowersCount {
+public class UsersCount {
 
     private int following;
     private int followers;
 
-    public FollowingFollowersCount(int following, int followers) {
+    public UsersCount(int following, int followers) {
         this.following = following;
         this.followers = followers;
     }

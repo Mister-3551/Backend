@@ -35,9 +35,9 @@ public class WebUserService {
         User user = new User();
         for (String string : list) {
             var word = string.split(",");
-            user = new User(Long.parseLong(word[0]), word[1], word[2], word[3]);
+            user = new User(Long.parseLong(word[0]), word[1], word[2], word[3], word[4]);
         }
-        if (user.getId() != null) accessToken = generateToken(user.getId(), user.getName(), user.getUsername(), user.getEmail());
+        if (user.getId() != null) accessToken = generateToken(user.getId(), user.getName(), user.getUsername(), user.getEmail(), user.getRole());
         return accessToken;
     }
 
@@ -66,7 +66,7 @@ public class WebUserService {
             if (profileImage.getSize() > 2097152L) return "Image size is more than 2 MB";
             if (profileImage.getOriginalFilename().contains("..")) return "Invalid Characters";
             if (!fileStorageService.getFileExtension(profileImage.getOriginalFilename()).equals("jpg")) return "Wrong file format";
-            String fileName = fileStorageService.storePicture(idUser, profileImage);
+            String fileName = fileStorageService.storePicture(idUser, profileImage, "profilePicture");
             if (webUserRepository.updateProfileWithPicture(idUser, fullName, fileName) == 0) return "Couldn't update profile data";
         }
         if (webUserRepository.updateProfileWithoutPicture(idUser, fullName) == 0) return "Couldn't update profile data";
@@ -74,16 +74,17 @@ public class WebUserService {
     }
 
     public ResponseEntity<byte[]> getImage(String filename) throws Exception {
-        byte[] image = Files.readAllBytes(Paths.get("./images/profile-pictures/" + filename));
+        byte[] image = Files.readAllBytes(Paths.get("./images/profile-picture/" + filename));
         return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG).body(image);
     }
 
-    private String generateToken(Long id, String name, String username, String email) {
+    private String generateToken(Long id, String name, String username, String email, String role) {
         Map<String, Object> claims = new HashMap<>();
         claims.put("id", id);
         claims.put("name", name);
         claims.put("username", username);
         claims.put("email", email);
+        claims.put("role", role);
 
         String accessToken = Jwts.builder().setClaims(claims).setSubject("Authentication").setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + 1000 * 1000))

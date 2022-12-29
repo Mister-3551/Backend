@@ -4,8 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import pintar.gasper.backend.webApp.object.FollowingFollowersCount;
-import pintar.gasper.backend.webApp.object.Notifications;
+import pintar.gasper.backend.webApp.entity.notifications.Notification;
 import pintar.gasper.backend.webApp.service.NotificationsService;
 
 import java.util.ArrayList;
@@ -21,12 +20,12 @@ public class NotificationsController {
     }
 
     @PostMapping("/web-get-user-notifications")
-    public ArrayList<Notifications> checkIfUserFollow(@RequestParam(name = "idUser") String idUser) {
+    public ArrayList<Notification> checkIfUserFollow(@RequestParam(name = "idUser") String idUser) {
         return notificationsService.getUserNotifications(idUser);
     }
 
     @PostMapping("/web-delete-user-notification")
-    public String deleteUserNotification(@RequestParam(name = "idNotification") String idNotification) {
+    public int deleteUserNotification(@RequestParam(name = "idNotification") String idNotification) {
         return notificationsService.deleteUserNotificationsById(idNotification);
     }
 }

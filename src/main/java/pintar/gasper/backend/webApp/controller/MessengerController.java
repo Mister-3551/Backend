@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import pintar.gasper.backend.webApp.object.FollowingFollowers;
-import pintar.gasper.backend.webApp.object.Message;
+import pintar.gasper.backend.webApp.entity.messenger.Message;
+import pintar.gasper.backend.webApp.entity.users.UsersEntity;
 import pintar.gasper.backend.webApp.service.MessengerService;
 
 import java.util.ArrayList;
@@ -21,7 +21,7 @@ public class MessengerController {
     }
 
     @PostMapping("/web-get-user-messenger-friends")
-    public ArrayList<FollowingFollowers> getUserMessengerFriends(@RequestParam(name = "idUser") String idUser) {
+    public ArrayList<UsersEntity> getUserMessengerFriends(@RequestParam(name = "idUser") String idUser) {
         return messengerService.getUserMessengerFriends(idUser);
     }
 

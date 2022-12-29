@@ -1,26 +1,19 @@
 package pintar.gasper.backend.webApp.repository;
 
-import net.bytebuddy.dynamic.DynamicType;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.util.Optionals;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.multipart.MultipartFile;
 import pintar.gasper.backend.game.entity.Users;
-import pintar.gasper.backend.webApp.object.SearchUser;
-import pintar.gasper.backend.webApp.object.UserAccount;
 
 import javax.transaction.Transactional;
-import java.sql.Blob;
-import java.util.List;
-import java.util.Optional;
 
 @Repository
 public interface WebUserRepository extends JpaRepository<Users, String> {
 
-    @Query(value = "SELECT u.id, u.name, u.username, u.email " +
+    @Query(value = "SELECT u.id, u.name, u.username, u.email, r.roles " +
             "FROM users u " +
+            "LEFT JOIN roles r ON r.id_user = u.id " +
             "WHERE u.username = :usernameEmail AND u.password = :password OR u.email = :usernameEmail AND u.password = :password", nativeQuery = true)
     String[] findUser(String usernameEmail, String password);
 
@@ -31,7 +24,8 @@ public interface WebUserRepository extends JpaRepository<Users, String> {
 
     @Query(value = "SELECT u.id, u.username, u.rank, u.picture " +
             "FROM users u " +
-            "WHERE u.username LIKE %:username% " +
+            "LEFT JOIN roles r ON r.id_user = u.id " +
+            "WHERE u.username LIKE %:username% AND r.roles = 'USER' " +
             "ORDER BY u.rank DESC", nativeQuery = true)
     String[] getUsersBySearch(String username);
 
