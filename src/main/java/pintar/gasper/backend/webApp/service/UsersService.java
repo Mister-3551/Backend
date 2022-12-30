@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import pintar.gasper.backend.webApp.entity.users.UsersEntity;
 import pintar.gasper.backend.webApp.entity.users.UsersCount;
+import pintar.gasper.backend.webApp.entity.users.SearchUser;
 import pintar.gasper.backend.webApp.repository.UsersRepository;
 
 import java.util.ArrayList;
@@ -28,6 +29,16 @@ public class UsersService {
         int following = usersRepository.getFollowingCount(idUserOrUsername);
         int followers = usersRepository.getFollowersCount(idUserOrUsername);
         return new UsersCount(following, followers);
+    }
+
+    public ArrayList<SearchUser> getUsersBySearch(String username) {
+        var list = usersRepository.getUsersBySearch(username);
+        var users = new ArrayList<SearchUser>();
+        for (String string : list) {
+            var word = string.split(",");
+            users.add(new SearchUser(Long.parseLong(word[0]), word[1], Integer.parseInt(word[2]), word[3]));
+        }
+        return users;
     }
 
     public String setUserFollow(String idUser, String username, String type) {

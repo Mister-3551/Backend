@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import pintar.gasper.backend.webApp.entity.users.UsersEntity;
 import pintar.gasper.backend.webApp.entity.users.UsersCount;
+import pintar.gasper.backend.webApp.entity.users.SearchUser;
 import pintar.gasper.backend.webApp.service.UsersService;
 
 import java.util.ArrayList;
@@ -28,6 +29,11 @@ public class UsersController {
     @PostMapping("/web-get-following-followers-count")
     public UsersCount checkIfUserFollow(@RequestParam(name = "idUserOrUsername") String idUserOrUsername) {
         return usersService.getUserFollowingFollowersCount(idUserOrUsername);
+    }
+
+    @PostMapping("/web-get-users-by-search")
+    public ArrayList<SearchUser> getUsersBySearch(@RequestParam(name = "username") String username) {
+        return usersService.getUsersBySearch(username);
     }
 
     @PostMapping("/web-set-user-follow")

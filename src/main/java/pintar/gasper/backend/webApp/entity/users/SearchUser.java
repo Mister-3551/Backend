@@ -1,4 +1,4 @@
-package pintar.gasper.backend.webApp.object;
+package pintar.gasper.backend.webApp.entity.users;
 
 public class SearchUser {
 

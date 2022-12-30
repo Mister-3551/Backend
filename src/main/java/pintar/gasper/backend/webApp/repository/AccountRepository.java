@@ -4,30 +4,22 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
-import pintar.gasper.backend.game.entity.Users;
-
+import pintar.gasper.backend.webApp.entity.account.AccountEntity;
 import javax.transaction.Transactional;
 
 @Repository
-public interface WebUserRepository extends JpaRepository<Users, String> {
+public interface AccountRepository extends JpaRepository<AccountEntity, String> {
 
-    @Query(value = "SELECT u.id, u.name, u.username, u.email, r.roles " +
+    @Query(value = "SELECT u.id, u.name, u.username, u.email, r.role " +
             "FROM users u " +
             "LEFT JOIN roles r ON r.id_user = u.id " +
             "WHERE u.username = :usernameEmail AND u.password = :password OR u.email = :usernameEmail AND u.password = :password", nativeQuery = true)
-    String[] findUser(String usernameEmail, String password);
+    AccountEntity findUser(String usernameEmail, String password);
 
-    @Query(value = "SELECT u.name, u.username, u.email " +
+    @Query(value = "SELECT u.id, u.name, u.username, u.email, null AS role " +
             "FROM users u " +
             "WHERE u.id = :idUser", nativeQuery = true)
-    String[] getUserAccountData(String idUser);
-
-    @Query(value = "SELECT u.id, u.username, u.rank, u.picture " +
-            "FROM users u " +
-            "LEFT JOIN roles r ON r.id_user = u.id " +
-            "WHERE u.username LIKE %:username% AND r.roles = 'USER' " +
-            "ORDER BY u.rank DESC", nativeQuery = true)
-    String[] getUsersBySearch(String username);
+    AccountEntity getUserAccountData(String idUser);
 
     @Modifying
     @Transactional

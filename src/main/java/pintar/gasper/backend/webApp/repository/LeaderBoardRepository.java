@@ -14,7 +14,7 @@ public interface LeaderBoardRepository extends JpaRepository<LeaderBoardEntity, 
             "FROM users u " +
             "INNER JOIN statistics s ON s.id_user = u.id " +
             "INNER JOIN roles r ON r.id_user = u.id " +
-            "WHERE r.roles != 'ADMIN' " +
+            "WHERE r.role != 'ADMIN' " +
             "ORDER BY s.kills DESC, u.rank DESC LIMIT 10", nativeQuery = true)
     ArrayList<LeaderBoardEntity> getLeaderBoardStatistics();
 }

@@ -12,18 +12,13 @@ public class AdminEntity {
     @Id
     private Long id;
 
-    private String usedTime;
+    private String usersCount;
     private String currentScore;
     private String maxScore;
     private String deaths;
 
     public AdminEntity() {}
 
-    public AdminEntity(Long id, String usedTime, String currentScore, String maxScore, String deaths) {
-        this.id = id;
-        this.usedTime = usedTime;
-        this.currentScore = currentScore;
-        this.maxScore = maxScore;
-        this.deaths = deaths;
-    }
+
+
 }

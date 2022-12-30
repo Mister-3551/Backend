@@ -20,7 +20,12 @@ public class AdminController {
     }
 
     @PostMapping(value = "/web-add-new-game-level")
-    public List<?> addNewGameLevel(@RequestParam(name = "idAdmin") String idAdmin, @RequestParam(name = "levelName") String levelName, @RequestParam(name = "levelPicture") MultipartFile levelPicture, @RequestParam(name = "levelMap") MultipartFile levelMap) throws Exception {
+    public String addNewGameLevel(@RequestParam(name = "idAdmin") Long idAdmin, @RequestParam(name = "levelName") String levelName, @RequestParam(name = "levelPicture", required = false) MultipartFile levelPicture, @RequestParam(name = "levelMap", required = false) MultipartFile levelMap) throws Exception {
         return adminService.addNewGameLevel(idAdmin, levelName, levelPicture, levelMap);
+    }
+
+    @PostMapping(value = "/web-change-password")
+    public String changePassword(@RequestParam(name = "idAdmin") Long idAdmin, @RequestParam(name = "currentPassword") String currentPassword, @RequestParam(name = "newPassword") String newPassword, @RequestParam(name = "confirmPassword") String confirmPassword) {
+        return adminService.changePassword(idAdmin, currentPassword, newPassword, confirmPassword);
     }
 }

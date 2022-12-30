@@ -32,7 +32,6 @@ public class FileStorageService {
     }
 
     public String storePicture(String id, MultipartFile file, String type) throws Exception {
-
         String fileName;
         Path targetLocation;
 
@@ -40,10 +39,10 @@ public class FileStorageService {
             fileName = id + "-profile-picture." + getFileExtension(file.getOriginalFilename());
             targetLocation = this.profilePicture.resolve(fileName);
         } else if (type.equals("levelPicture")) {
-            fileName = id + "-level-picture." + getFileExtension(file.getOriginalFilename());
+            fileName = "level" + id + "." + getFileExtension(file.getOriginalFilename());
             targetLocation = this.levelPicture.resolve(fileName);
         } else if (type.equals("levelMap")) {
-            fileName = "map." + id + getFileExtension(file.getOriginalFilename());
+            fileName = "map" + id + "." + getFileExtension(file.getOriginalFilename());
             targetLocation = this.levelMap.resolve(fileName);
         } else return "";
 

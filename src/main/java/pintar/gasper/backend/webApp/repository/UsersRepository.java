@@ -42,6 +42,13 @@ public interface UsersRepository extends JpaRepository<UsersEntity, String> {
             "WHERE ff.id_user = u1.id", nativeQuery = true)
     ArrayList<UsersEntity> getUserFollowing(String idUserOrUsername);
 
+    @Query(value = "SELECT u.id, u.username, u.rank, u.picture " +
+            "FROM users u " +
+            "LEFT JOIN roles r ON r.id_user = u.id " +
+            "WHERE u.username LIKE %:username% AND r.role = 'USER' " +
+            "ORDER BY u.rank DESC", nativeQuery = true)
+    String[] getUsersBySearch(String username);
+
     @Modifying
     @Transactional
     @Query(value = "INSERT INTO followers_following (id, id_user, id_friend, created_at) " +
