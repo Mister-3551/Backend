@@ -15,7 +15,7 @@ public interface NotificationsRepository extends JpaRepository<NotificationsEnti
     @Query(value = "SELECT n.id, u.username, u.picture, n.type, " +
             "TIMESTAMPDIFF(YEAR, TIMESTAMP(n.created_at), NOW()) AS years, " +
             "MOD(TIMESTAMPDIFF(MONTH, TIMESTAMP(n.created_at), NOW()), 12) AS months, " +
-            "CAST((TIMESTAMPDIFF(DAY, TIMESTAMP(n.created_at), NOW()) / 7) AS int) AS weeks, " +
+            "FLOOR(CAST((TIMESTAMPDIFF(DAY, TIMESTAMP(n.created_at), NOW()) / 7) AS double)) AS weeks, " +
             "TIMESTAMPDIFF(DAY, TIMESTAMP(n.created_at), NOW()) AS days, " +
             "MOD(TIMESTAMPDIFF(HOUR, TIMESTAMP(n.created_at), NOW()), 24) AS hours, " +
             "MOD(TIMESTAMPDIFF(MINUTE, TIMESTAMP(n.created_at), NOW()), 60) AS minutes " +
