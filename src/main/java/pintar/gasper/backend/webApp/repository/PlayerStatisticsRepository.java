@@ -13,8 +13,9 @@ public interface PlayerStatisticsRepository extends JpaRepository<PlayerStatisti
             "WHERE u.id = :idUserOrUsername OR u.id = u1.id", nativeQuery = true)
     PlayerStatistics getPlayerStatistics(String idUserOrUsername);
 
-    @Query(value = "SELECT u.username, u.rank " +
+    @Query(value = "SELECT u.username, u.rank, COUNT(lc.id) + 1 AS current_level " +
             "FROM users u " +
-            "WHERE u.id = :idUser", nativeQuery = true)
-    String[] getPlayerBasicData(String idUser);
+            "LEFT JOIN levels_completed lc ON lc.id_user = u.id " +
+            "WHERE u.id = :idUser AND lc.completed = '1'", nativeQuery = true)
+    String[] getPlayerBasicData(Long idUser);
 }

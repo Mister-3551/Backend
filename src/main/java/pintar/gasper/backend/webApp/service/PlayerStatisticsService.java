@@ -20,12 +20,12 @@ public class PlayerStatisticsService {
         return playerStatisticsRepository.getPlayerStatistics(idUserOrUsername);
     }
 
-    public AppNavigation getPlayerBasicData(String idUser) {
+    public AppNavigation getPlayerBasicData(Long idUser) {
         var list = playerStatisticsRepository.getPlayerBasicData(idUser);
         AppNavigation appNavigation = new AppNavigation();
         for (String string : list) {
             var word = string.split(",");
-            appNavigation = new AppNavigation(word[0], Integer.valueOf(word[1]));
+            appNavigation = new AppNavigation(word[0], Integer.valueOf(word[1]), Integer.valueOf(word[2]));
         }
         return appNavigation;
     }

@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public interface LevelRepository extends JpaRepository<LevelsEntity, String> {
 
-    @Query(value = "SELECT l.id, l.name, l.map, CASE WHEN user_levels.completed IS NULL THEN 0 ELSE user_levels.completed END as completed " +
+    @Query(value = "SELECT l.id, l.name, l.picture, l.map, CASE WHEN user_levels.completed IS NULL THEN 0 ELSE user_levels.completed END as completed " +
             "FROM levels l " +
             "LEFT JOIN (SELECT DISTINCT lc.id_level as id_level, lc.completed as completed " +
             "           FROM levels_completed lc " +

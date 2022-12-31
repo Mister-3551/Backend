@@ -13,12 +13,6 @@ public class AdminEntity {
     private Long id;
 
     private String usersCount;
-    private String currentScore;
-    private String maxScore;
-    private String deaths;
 
     public AdminEntity() {}
-
-
-
 }

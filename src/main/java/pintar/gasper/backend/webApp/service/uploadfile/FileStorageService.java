@@ -18,12 +18,12 @@ public class FileStorageService {
     private final Path levelMap;
 
     @Autowired
-    public FileStorageService(Environment env) throws Exception {
-        this.profilePicture = Paths.get(env.getProperty("app.file.upload-dir-profile-picture", "./images/profile-picture"))
+    public FileStorageService(Environment environment) throws Exception {
+        this.profilePicture = Paths.get(environment.getProperty("app.file.upload-dir-profile-picture", "./images/profile-picture"))
                 .toAbsolutePath().normalize();
-        this.levelPicture = Paths.get(env.getProperty("app.file.upload-dir-level-picture", "./images/level-picture"))
+        this.levelPicture = Paths.get(environment.getProperty("app.file.upload-dir-level-picture", "./images/level-picture"))
                 .toAbsolutePath().normalize();
-        this.levelMap = Paths.get(env.getProperty("app.file.upload-dir-level-map", "./images/level-map"))
+        this.levelMap = Paths.get(environment.getProperty("app.file.upload-dir-level-map", "./images/level-map"))
                 .toAbsolutePath().normalize();
 
         Files.createDirectories(profilePicture);

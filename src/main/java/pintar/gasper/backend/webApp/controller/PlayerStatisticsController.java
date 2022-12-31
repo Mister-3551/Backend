@@ -24,7 +24,7 @@ public class PlayerStatisticsController {
     }
 
     @PostMapping("/web-get-player-basic-data")
-    public AppNavigation getPlayerBasicData(@RequestParam(name = "idUser") String idUser) {
+    public AppNavigation getPlayerBasicData(@RequestParam(name = "idUser") Long idUser) {
         return playerStatisticsService.getPlayerBasicData(idUser);
     }
 }

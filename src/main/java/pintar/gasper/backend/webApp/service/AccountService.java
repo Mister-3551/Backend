@@ -25,7 +25,7 @@ public class AccountService {
     public String webAuthentication(String usernameEmail, String password) {
         AccountEntity user = accountRepository.findUser(usernameEmail, password);
         var accessToken = "";
-        if (user.getId() != null) accessToken = generateToken(user.getId(), user.getName(), user.getUsername(), user.getEmail(), user.getRole());
+        if (user != null) accessToken = generateToken(user.getId(), user.getRole());
         return accessToken;
     }
 
@@ -46,12 +46,9 @@ public class AccountService {
         return "The account has been updated";
     }
 
-    private String generateToken(Long id, String name, String username, String email, String role) {
+    private String generateToken(Long id, String role) {
         Map<String, Object> claims = new HashMap<>();
         claims.put("id", id);
-        claims.put("name", name);
-        claims.put("username", username);
-        claims.put("email", email);
         claims.put("role", role);
 
         String accessToken = Jwts.builder().setClaims(claims).setSubject("Authentication").setIssuedAt(new Date(System.currentTimeMillis()))
