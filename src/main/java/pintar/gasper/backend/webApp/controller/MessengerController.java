@@ -21,12 +21,12 @@ public class MessengerController {
     }
 
     @PostMapping("/web-get-user-messenger-friends")
-    public ArrayList<UsersEntity> getUserMessengerFriends(@RequestParam(name = "idUser") String idUser) {
+    public ArrayList<UsersEntity> getUserMessengerFriends(@RequestParam(name = "idUser") Long idUser) {
         return messengerService.getUserMessengerFriends(idUser);
     }
 
     @PostMapping("/web-get-conversation")
-    public ArrayList<Message> getConversation(@RequestParam(name = "idUser") String idUser, @RequestParam(name = "username") String username) {
+    public ArrayList<Message> getConversation(@RequestParam(name = "idUser") Long idUser, @RequestParam(name = "username") String username) {
         return messengerService.getConversation(idUser, username);
     }
 }

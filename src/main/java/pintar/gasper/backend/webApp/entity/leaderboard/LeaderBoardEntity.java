@@ -14,15 +14,15 @@ public class LeaderBoardEntity {
     private String username;
     private String picture;
     private int rank;
-    private int kills;
+    private float completed;
 
     public LeaderBoardEntity() {}
 
-    public LeaderBoardEntity(Long id, String username, String picture, int rank, int kills) {
+    public LeaderBoardEntity(Long id, String username, String picture, int rank, float completed) {
         this.id = id;
         this.username = username;
         this.picture = picture;
         this.rank = rank;
-        this.kills = kills;
+        this.completed = completed;
     }
 }

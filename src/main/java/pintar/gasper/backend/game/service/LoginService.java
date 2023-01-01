@@ -5,6 +5,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import pintar.gasper.backend.game.object.Message;
+import pintar.gasper.backend.game.object.User;
 import pintar.gasper.backend.game.repository.LoginRepository;
 
 import java.util.Date;
@@ -22,7 +23,7 @@ public class LoginService {
     }
 
     public String authentication(String username, String password) {
-        var user = loginRepository.findByUsernameAndPassword(username, password);
+        User user = null;
         var accessToken = "";
         if (user != null) {
             accessToken = generateToken(user.getId(), user.getName(), user.getUsername(), String.valueOf(user.getRank()), password);

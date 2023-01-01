@@ -10,11 +10,16 @@ import java.util.ArrayList;
 @Repository
 public interface LeaderBoardRepository extends JpaRepository<LeaderBoardEntity, String> {
 
-    @Query(value = "SELECT u.id, u.username, u.picture, u.rank, s.kills " +
+    @Query(value = "SELECT u.id, u.username, u.picture, s.rank, " +
+            "ROUND((SELECT COUNT(ls.id) " +
+            "       FROM levels_completed ls " +
+            "       WHERE ls.completed = '1' AND ls.id_user = u.id) " +
+            " / (SELECT COUNT(l.id) AS levels " +
+            "    FROM levels l), 3) * 100 AS completed " +
             "FROM users u " +
-            "INNER JOIN statistics s ON s.id_user = u.id " +
-            "INNER JOIN roles r ON r.id_user = u.id " +
+            "LEFT JOIN statistics s ON s.id_user = u.id " +
+            "LEFT JOIN roles r ON r.id_user = u.id " +
             "WHERE r.role != 'ADMIN' " +
-            "ORDER BY s.kills DESC, u.rank DESC LIMIT 10", nativeQuery = true)
+            "ORDER BY completed DESC, s.rank DESC LIMIT 10", nativeQuery = true)
     ArrayList<LeaderBoardEntity> getLeaderBoardStatistics();
 }

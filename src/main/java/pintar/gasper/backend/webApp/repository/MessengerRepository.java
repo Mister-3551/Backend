@@ -10,10 +10,11 @@ import java.util.ArrayList;
 @Repository
 public interface MessengerRepository extends JpaRepository<MessengerEntity, String> {
 
-    @Query(value = "SELECT u.id, u.username, u.rank, u.picture FROM messenger m " +
+    @Query(value = "SELECT u.id, u.username, s.rank, u.picture FROM messenger m " +
             "LEFT JOIN users u ON u.id = m.id_friend " +
+            "LEFT JOIN statistics s ON s.id_user = u.id " +
             "WHERE m.id_user = :idUser", nativeQuery = true)
-    String[] getUserMessengerFriends(String idUser);
+    String[] getUserMessengerFriends(Long idUser);
 
 
     @Query(value = "SELECT ms.id, ms.id_user, ms.text, " +
@@ -27,5 +28,5 @@ public interface MessengerRepository extends JpaRepository<MessengerEntity, Stri
             "FROM messages ms LEFT JOIN users u ON u.username = :username " +
             "WHERE ms.id_user = :idUser AND ms.id_friend = u.id OR ms.id_friend = :idUser AND ms.id_user = u.id " +
             "ORDER BY ms.created_at ASC", nativeQuery = true)
-    ArrayList<MessengerEntity> getConversation(String idUser, String username);
+    ArrayList<MessengerEntity> getConversation(Long idUser, String username);
 }

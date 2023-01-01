@@ -21,7 +21,7 @@ public class MessengerService {
         this.messengerRepository = messengerRepository;
     }
 
-    public ArrayList<UsersEntity> getUserMessengerFriends(@RequestParam(name = "idUser") String idUser) {
+    public ArrayList<UsersEntity> getUserMessengerFriends(@RequestParam(name = "idUser") Long idUser) {
         var list = messengerRepository.getUserMessengerFriends(idUser);
         ArrayList<UsersEntity> friends = new ArrayList<>();
 
@@ -32,7 +32,7 @@ public class MessengerService {
         return friends;
     }
 
-    public ArrayList<Message> getConversation(String idUser, String username) {
+    public ArrayList<Message> getConversation(Long idUser, String username) {
         var conversation = messengerRepository.getConversation(idUser, username);
         ArrayList<Message> messages = new ArrayList<>();
 
