@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import pintar.gasper.backend.game.object.Setting;
+import pintar.gasper.backend.game.entity.SettingsEntity;
 import pintar.gasper.backend.game.service.SettingsService;
 
 @RestController
@@ -18,7 +18,7 @@ public class SettingsController {
     }
 
     @PostMapping("/get-settings")
-    public Setting getLevels(@RequestParam(name = "idUser") String idUser) {
+    public SettingsEntity getLevels(@RequestParam(name = "idUser") Long idUser) {
         return service.getSettings(idUser);
     }
 }

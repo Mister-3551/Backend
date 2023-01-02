@@ -33,8 +33,13 @@ public class FileController {
         return fileService.getLevelPicture(filename);
     }
 
+    @GetMapping("/tile-picture-70X70/{filename}")
+    public ResponseEntity<byte[]> getTilePicture70X70(@PathVariable("filename") String filename) throws Exception {
+        return fileService.getTilePicture70X70(filename);
+    }
+
     @GetMapping("/level-map/{filename}")
-    public ResponseEntity<Resource> getLevelMap(@PathVariable("filename") String filename) throws Exception {
+    public ResponseEntity<byte[]> getLevelMap(@PathVariable("filename") String filename) throws Exception {
         return fileService.getLevelMap(filename);
     }
 }

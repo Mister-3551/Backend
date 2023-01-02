@@ -1,12 +1,14 @@
-package pintar.gasper.backend.game.repository;
+package pintar.gasper.backend.webApp.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
 import pintar.gasper.backend.webApp.entity.levels.LevelsEntity;
 
 import java.util.ArrayList;
 
-public interface LevelRepository extends JpaRepository<LevelsEntity, String> {
+@Repository
+public interface LevelsRepository extends JpaRepository<LevelsEntity, Long> {
 
     @Query(value = "SELECT l.id, l.name, l.picture, l.map, CASE WHEN user_levels.completed IS NULL THEN 0 ELSE user_levels.completed END as completed " +
             "FROM levels l " +
