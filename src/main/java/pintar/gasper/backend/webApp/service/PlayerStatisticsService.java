@@ -3,7 +3,7 @@ package pintar.gasper.backend.webApp.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import pintar.gasper.backend.webApp.entity.playerstatistics.PlayerStatistics;
-import pintar.gasper.backend.webApp.object.AppNavigation;
+import pintar.gasper.backend.webApp.entity.admin.object.AppNavigation;
 import pintar.gasper.backend.webApp.repository.PlayerStatisticsRepository;
 
 @Component

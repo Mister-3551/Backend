@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import pintar.gasper.backend.webApp.entity.playerstatistics.PlayerStatistics;
-import pintar.gasper.backend.webApp.object.AppNavigation;
+import pintar.gasper.backend.webApp.entity.admin.object.AppNavigation;
 import pintar.gasper.backend.webApp.service.PlayerStatisticsService;
 
 @RestController

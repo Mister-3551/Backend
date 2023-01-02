@@ -16,32 +16,28 @@ import java.nio.file.Paths;
 @Service
 public class FileService {
 
-    private final Path profilePicture;
+    private final Path profilePictures;
     private final Path welcomePicture;
-    private final Path levelPicture;
-    private final Path tiles;
-    private final Path tilesDimensions;
+    private final Path levelPictures;
     private final Path tilesPictures70X70;
-    private final Path levelMap;
+    private final Path levelMaps;
 
     @Autowired
     public FileService(Environment environment) {
-        this.profilePicture = Paths.get(environment.getProperty("app.file.upload-dir-profile-picture", "./files/pictures/profile-picture"));
-        this.welcomePicture = Paths.get(environment.getProperty("app.file.upload-dir-welcome-picture", "./files/pictures/welcome-picture"));
-        this.levelPicture = Paths.get(environment.getProperty("app.file.upload-dir-level-picture", "./files/pictures/level-picture"));
-        this.tiles = Paths.get(environment.getProperty("app.file.upload-dir-tiles", "./files/tiles"));
-        this.tilesDimensions = Paths.get(environment.getProperty("app.file.upload-dir-tiles-dimensions", "./files/tiles/tiles-dimensions"));
-        this.tilesPictures70X70 = Paths.get(environment.getProperty("app.file.upload-dir-tiles-pictures-70X70", "./files/tiles/tiles-dimensions/70X70"));
-        this.levelMap = Paths.get(environment.getProperty("app.file.upload-dir-level-map", "./files/level-map"));
+        this.profilePictures = Paths.get(environment.getProperty("app.file.upload-dir-profile-pictures", "./files/pictures/profile-pictures")).toAbsolutePath().normalize();
+        this.welcomePicture = Paths.get(environment.getProperty("app.file.upload-dir-welcome-picture", "./files/pictures/welcome-picture")).toAbsolutePath().normalize();
+        this.levelPictures = Paths.get(environment.getProperty("app.file.upload-dir-level-pictures", "./files/pictures/level-pictures")).toAbsolutePath().normalize();
+        this.tilesPictures70X70 = Paths.get(environment.getProperty("app.file.upload-dir-tiles-pictures-70X70", "./files/tiles/tiles-dimensions/70X70")).toAbsolutePath().normalize();
+        this.levelMaps = Paths.get(environment.getProperty("app.file.upload-dir-level-maps", "./files/level-maps")).toAbsolutePath().normalize();
     }
 
     public ResponseEntity<byte[]> getProfilePicture(String filename) throws Exception {
-        byte[] image = Files.readAllBytes(Paths.get(profilePicture + "/" + filename));
+        byte[] image = Files.readAllBytes(Paths.get(profilePictures + "/" + filename));
         return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG).body(image);
     }
 
     public ResponseEntity<byte[]> getLevelPicture(String filename) throws Exception {
-        byte[] image = Files.readAllBytes(Paths.get(levelPicture + "/" + filename));
+        byte[] image = Files.readAllBytes(Paths.get(levelPictures + "/" + filename));
         return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG).body(image);
     }
 
@@ -52,7 +48,7 @@ public class FileService {
 
 
     public ResponseEntity<byte[]> getLevelMap(String filename) throws Exception {
-        byte[] image = Files.readAllBytes(Paths.get(levelMap + "/" + filename));
+        byte[] image = Files.readAllBytes(Paths.get(levelMaps + "/" + filename));
 
         HttpHeaders header = new HttpHeaders();
         header.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + filename);

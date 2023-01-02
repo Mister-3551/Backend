@@ -13,38 +13,58 @@ import java.nio.file.StandardCopyOption;
 @Service
 public class FileStorageService {
 
-    private final Path profilePicture;
-    private final Path levelPicture;
-    private final Path levelMap;
+    private final Path profilePictures;
+    private final Path welcomePicture;
+    private final Path levelPictures;
+    private final Path tiles;
+    private final Path tilesDimensions;
+    private final Path tilesPictures70X70;
+    private final Path levelMaps;
 
     @Autowired
     public FileStorageService(Environment environment) throws Exception {
-        this.profilePicture = Paths.get(environment.getProperty("app.file.upload-dir-profile-picture", "./images/profile-picture"))
-                .toAbsolutePath().normalize();
-        this.levelPicture = Paths.get(environment.getProperty("app.file.upload-dir-level-picture", "./images/level-picture"))
-                .toAbsolutePath().normalize();
-        this.levelMap = Paths.get(environment.getProperty("app.file.upload-dir-level-map", "./images/level-map"))
-                .toAbsolutePath().normalize();
+        this.profilePictures = Paths.get(environment.getProperty("app.file.upload-dir-profile-pictures", "./files/pictures/profile-pictures")).toAbsolutePath().normalize();
+        this.welcomePicture = Paths.get(environment.getProperty("app.file.upload-dir-welcome-picture", "./files/pictures/welcome-picture")).toAbsolutePath().normalize();
+        this.levelPictures = Paths.get(environment.getProperty("app.file.upload-dir-level-pictures", "./files/pictures/level-pictures")).toAbsolutePath().normalize();
+        this.tiles = Paths.get(environment.getProperty("app.file.upload-dir-tiles", "./files/tiles")).toAbsolutePath().normalize();
+        this.tilesDimensions = Paths.get(environment.getProperty("app.file.upload-dir-tiles-dimensions", "./files/tiles/tiles-dimensions")).toAbsolutePath().normalize();
+        this.tilesPictures70X70 = Paths.get(environment.getProperty("app.file.upload-dir-tiles-pictures-70X70", "./files/tiles/tiles-dimensions/70X70")).toAbsolutePath().normalize();
+        this.levelMaps = Paths.get(environment.getProperty("app.file.upload-dir-level-maps", "./files/level-maps")).toAbsolutePath().normalize();
 
-        Files.createDirectories(profilePicture);
-        Files.createDirectories(levelPicture);
-        Files.createDirectories(levelMap);
+        Files.createDirectories(profilePictures);
+        Files.createDirectories(levelPictures);
+        Files.createDirectories(welcomePicture);
+        Files.createDirectories(tiles);
+        Files.createDirectories(tilesDimensions);
+        Files.createDirectories(tilesPictures70X70);
+        Files.createDirectories(levelMaps);
     }
 
     public String storePicture(String id, MultipartFile file, String type) throws Exception {
         String fileName;
         Path targetLocation;
 
-        if (type.equals("profilePicture")) {
-            fileName = id + "-profile-picture." + getFileExtension(file.getOriginalFilename());
-            targetLocation = this.profilePicture.resolve(fileName);
-        } else if (type.equals("levelPicture")) {
-            fileName = "level" + id + "." + getFileExtension(file.getOriginalFilename());
-            targetLocation = this.levelPicture.resolve(fileName);
-        } else if (type.equals("levelMap")) {
-            fileName = "map" + id + "." + getFileExtension(file.getOriginalFilename());
-            targetLocation = this.levelMap.resolve(fileName);
-        } else return "";
+        switch (type) {
+            case "profilePicture" -> {
+                fileName = id + "-profile-picture." + getFileExtension(file.getOriginalFilename());
+                targetLocation = this.profilePictures.resolve(fileName);
+            }
+            case "levelPicture" -> {
+                fileName = "level" + id + "." + getFileExtension(file.getOriginalFilename());
+                targetLocation = this.levelPictures.resolve(fileName);
+            }
+            case "levelMap" -> {
+                fileName = "map" + id + "." + getFileExtension(file.getOriginalFilename());
+                targetLocation = this.levelMaps.resolve(fileName);
+            }
+            case "tilesPictures" -> {
+                fileName = file.getOriginalFilename() + id + "." + getFileExtension(file.getOriginalFilename());
+                targetLocation = this.levelMaps.resolve(fileName);
+            }
+            default -> {
+                return "";
+            }
+        }
 
         if (fileName.contains("..")) {
             return "Invalid Characters";
