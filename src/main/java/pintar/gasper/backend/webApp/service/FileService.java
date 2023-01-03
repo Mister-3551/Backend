@@ -2,8 +2,6 @@ package pintar.gasper.backend.webApp.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
-import org.springframework.core.io.ByteArrayResource;
-import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -36,7 +34,7 @@ public class FileService {
         return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG).body(image);
     }
 
-    public ResponseEntity<byte[]> getLevelPicture(String filename) throws Exception {
+    public ResponseEntity<byte[]> getLevelPictures(String filename) throws Exception {
         byte[] image = Files.readAllBytes(Paths.get(levelPictures + "/" + filename));
         return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG).body(image);
     }
@@ -47,7 +45,7 @@ public class FileService {
     }
 
 
-    public ResponseEntity<byte[]> getLevelMap(String filename) throws Exception {
+    public ResponseEntity<byte[]> getLevelMaps(String filename) throws Exception {
         byte[] image = Files.readAllBytes(Paths.get(levelMaps + "/" + filename));
 
         HttpHeaders header = new HttpHeaders();

@@ -1,7 +1,6 @@
 package pintar.gasper.backend.webApp.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.Resource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,8 +28,8 @@ public class FileController {
     }
 
     @GetMapping("/level-picture/{filename}")
-    public ResponseEntity<byte[]> getLevelPicture(@PathVariable("filename") String filename) throws Exception {
-        return fileService.getLevelPicture(filename);
+    public ResponseEntity<byte[]> getLevelPictures(@PathVariable("filename") String filename) throws Exception {
+        return fileService.getLevelPictures(filename);
     }
 
     @GetMapping("/tile-picture-70X70/{filename}")
@@ -39,7 +38,7 @@ public class FileController {
     }
 
     @GetMapping("/level-map/{filename}")
-    public ResponseEntity<byte[]> getLevelMap(@PathVariable("filename") String filename) throws Exception {
-        return fileService.getLevelMap(filename);
+    public ResponseEntity<byte[]> getLevelMaps(@PathVariable("filename") String filename) throws Exception {
+        return fileService.getLevelMaps(filename);
     }
 }
