@@ -37,6 +37,11 @@ public class FileController {
         return fileService.getTilePicture70X70(filename);
     }
 
+    @GetMapping("/skin-picture/{filename}")
+    public ResponseEntity<byte[]> getSkinPicture(@PathVariable("filename") String filename) throws Exception {
+        return fileService.getSkinPicture(filename);
+    }
+
     @GetMapping("/level-map/{filename}")
     public ResponseEntity<byte[]> getLevelMaps(@PathVariable("filename") String filename) throws Exception {
         return fileService.getLevelMaps(filename);

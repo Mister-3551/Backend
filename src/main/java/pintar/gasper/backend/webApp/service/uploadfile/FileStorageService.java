@@ -16,6 +16,7 @@ public class FileStorageService {
     private final Path profilePictures;
     private final Path welcomePicture;
     private final Path levelPictures;
+    private final Path skins;
     private final Path tiles;
     private final Path tilesDimensions;
     private final Path tilesPictures70X70;
@@ -26,6 +27,7 @@ public class FileStorageService {
         this.profilePictures = Paths.get(environment.getProperty("app.file.upload-dir-profile-pictures", "./files/pictures/profile-pictures")).toAbsolutePath().normalize();
         this.welcomePicture = Paths.get(environment.getProperty("app.file.upload-dir-welcome-picture", "./files/pictures/welcome-picture")).toAbsolutePath().normalize();
         this.levelPictures = Paths.get(environment.getProperty("app.file.upload-dir-level-pictures", "./files/pictures/level-pictures")).toAbsolutePath().normalize();
+        this.skins = Paths.get(environment.getProperty("app.file.upload-dir-skins", "./files/pictures/skins")).toAbsolutePath().normalize();
         this.tiles = Paths.get(environment.getProperty("app.file.upload-dir-tiles", "./files/tiles")).toAbsolutePath().normalize();
         this.tilesDimensions = Paths.get(environment.getProperty("app.file.upload-dir-tiles-dimensions", "./files/tiles/tiles-dimensions")).toAbsolutePath().normalize();
         this.tilesPictures70X70 = Paths.get(environment.getProperty("app.file.upload-dir-tiles-pictures-70X70", "./files/tiles/tiles-dimensions/70X70")).toAbsolutePath().normalize();
@@ -34,6 +36,7 @@ public class FileStorageService {
         Files.createDirectories(profilePictures);
         Files.createDirectories(levelPictures);
         Files.createDirectories(welcomePicture);
+        Files.createDirectories(skins);
         Files.createDirectories(tiles);
         Files.createDirectories(tilesDimensions);
         Files.createDirectories(tilesPictures70X70);

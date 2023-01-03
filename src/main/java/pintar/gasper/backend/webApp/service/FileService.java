@@ -17,6 +17,7 @@ public class FileService {
     private final Path profilePictures;
     private final Path welcomePicture;
     private final Path levelPictures;
+    private final Path skins;
     private final Path tilesPictures70X70;
     private final Path levelMaps;
 
@@ -25,6 +26,7 @@ public class FileService {
         this.profilePictures = Paths.get(environment.getProperty("app.file.upload-dir-profile-pictures", "./files/pictures/profile-pictures")).toAbsolutePath().normalize();
         this.welcomePicture = Paths.get(environment.getProperty("app.file.upload-dir-welcome-picture", "./files/pictures/welcome-picture")).toAbsolutePath().normalize();
         this.levelPictures = Paths.get(environment.getProperty("app.file.upload-dir-level-pictures", "./files/pictures/level-pictures")).toAbsolutePath().normalize();
+        this.skins = Paths.get(environment.getProperty("app.file.upload-dir-skins", "./files/pictures/skins")).toAbsolutePath().normalize();
         this.tilesPictures70X70 = Paths.get(environment.getProperty("app.file.upload-dir-tiles-pictures-70X70", "./files/tiles/tiles-dimensions/70X70")).toAbsolutePath().normalize();
         this.levelMaps = Paths.get(environment.getProperty("app.file.upload-dir-level-maps", "./files/level-maps")).toAbsolutePath().normalize();
     }
@@ -44,6 +46,10 @@ public class FileService {
         return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG).body(image);
     }
 
+    public ResponseEntity<byte[]> getSkinPicture(String filename) throws Exception {
+        byte[] image = Files.readAllBytes(Paths.get(skins + "/" + filename));
+        return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG).body(image);
+    }
 
     public ResponseEntity<byte[]> getLevelMaps(String filename) throws Exception {
         byte[] image = Files.readAllBytes(Paths.get(levelMaps + "/" + filename));
