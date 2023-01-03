@@ -3,7 +3,7 @@ package pintar.gasper.backend.webApp.service.time;
 public class TimeChanger {
 
     public static String calculateTime(int years, int months, int weeks, int days, int hours, int minutes) {
-        String date = "";
+        String date;
         if (years == 0) {
             if (months == 0) {
                 if (weeks == 0) {
