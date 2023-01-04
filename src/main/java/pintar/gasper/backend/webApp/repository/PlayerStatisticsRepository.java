@@ -2,9 +2,9 @@ package pintar.gasper.backend.webApp.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import pintar.gasper.backend.webApp.entity.playerstatistics.PlayerStatistics;
+import pintar.gasper.backend.webApp.entity.playerstatistics.PlayerStatisticsEntity;
 
-public interface PlayerStatisticsRepository extends JpaRepository<PlayerStatistics, String> {
+public interface PlayerStatisticsRepository extends JpaRepository<PlayerStatisticsEntity, String> {
 
     @Query(value = "SELECT u.id, u.username, s.rank, s.current_xp, s.next_level_xp, u.picture, " +
             "ROUND((SELECT COUNT(ls.id) " +
@@ -16,7 +16,7 @@ public interface PlayerStatisticsRepository extends JpaRepository<PlayerStatisti
             "LEFT JOIN users u ON u.id = s.id_user " +
             "LEFT JOIN users u1 ON u.username = :idUserOrUsername " +
             "WHERE u.id = :idUserOrUsername OR u.id = u1.id", nativeQuery = true)
-    PlayerStatistics getPlayerStatistics(String idUserOrUsername);
+    PlayerStatisticsEntity getPlayerStatistics(String idUserOrUsername);
 
     @Query(value = "SELECT u.username, s.rank, COUNT(lc.id) AS current_level " +
             "FROM users u " +

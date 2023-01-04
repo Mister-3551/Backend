@@ -11,7 +11,6 @@ public class AdminEntity {
 
     @Id
     private Long id;
-
     private String usersCount;
 
     public AdminEntity() {}

@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Gostitelj: 127.0.0.1
--- Čas nastanka: 03. jan 2023 ob 23.33
--- Različica strežnika: 10.4.17-MariaDB
--- Različica PHP: 7.4.15
+-- Čas nastanka: 04. jan 2023 ob 15.28
+-- Različica strežnika: 10.4.27-MariaDB
+-- Različica PHP: 8.0.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -71,36 +71,37 @@ INSERT INTO `followers_following` (`id`, `id_user`, `id_friend`, `created_at`) V
 
 CREATE TABLE `levels` (
   `id` int(11) NOT NULL,
-  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `picture` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `map` varchar(255) COLLATE utf8_unicode_ci NOT NULL
+  `name` varchar(255) NOT NULL,
+  `picture` varchar(255) NOT NULL,
+  `map` varchar(255) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Odloži podatke za tabelo `levels`
 --
 
-INSERT INTO `levels` (`id`, `name`, `picture`, `map`) VALUES
-(35, 'Training 1', 'level1.jpg', 'map1.tmx'),
-(36, 'Training 2', 'level2.jpg', 'map2.tmx'),
-(37, 'Training 3', 'level3.jpg', 'map3.tmx'),
-(38, 'V Is For Village', 'level4.jpg', 'map4.tmx'),
-(39, 'Baddie Bunker 1', 'level5.jpg', 'map5.tmx'),
-(40, 'Nature Calls', 'level6.jpg', 'map6.tmx'),
-(41, 'Hostage Hotel', 'level7.jpg', 'map7.tmx'),
-(42, 'Monkey About', 'level8.jpg', 'map8.tmx'),
-(43, 'Bad Medicine', 'level9.jpg', 'map9.tmx'),
-(44, 'Baddie Bunker 2', 'level10.jpg', 'map10.tmx'),
-(45, 'Pet Detective', 'level11.jpg', 'map11.tmx'),
-(46, 'Beauty Spot', 'level12.jpg', 'map12.tmx'),
-(47, 'Candy shop', 'level13.jpg', 'map13.tmx'),
-(48, 'Sunrise Lobby', 'level14.jpg', 'map14.tmx'),
-(49, 'Dark Blue Forest', 'level15.jpg', 'map15.tmx'),
-(50, 'After Life', 'level16.jpg', 'map16.tmx'),
-(51, 'Save Yourself', 'level17.jpg', 'map17.tmx'),
-(52, 'Please Help Me', 'level18.jpg', 'map18.tmx'),
-(53, 'Carantania', 'level19.jpg', 'map19.tmx'),
-(54, 'Night Invasion', 'level20.jpg', 'map20.tmx');
+INSERT INTO `levels` (`id`, `name`, `picture`, `map`, `created_at`) VALUES
+(35, 'Training 1', 'level1.jpg', 'map1.tmx', '2023-01-04 09:06:26'),
+(36, 'Training 2', 'level2.jpg', 'map2.tmx', '2023-01-04 09:06:26'),
+(37, 'Training 3', 'level3.jpg', 'map3.tmx', '2023-01-04 09:06:26'),
+(38, 'V Is For Village', 'level4.jpg', 'map4.tmx', '2023-01-04 09:06:26'),
+(39, 'Baddie Bunker 1', 'level5.jpg', 'map5.tmx', '2023-01-04 09:06:26'),
+(40, 'Nature Calls', 'level6.jpg', 'map6.tmx', '2023-01-04 09:06:26'),
+(41, 'Hostage Hotel', 'level7.jpg', 'map7.tmx', '2023-01-04 09:06:26'),
+(42, 'Monkey About', 'level8.jpg', 'map8.tmx', '2023-01-04 09:06:26'),
+(43, 'Bad Medicine', 'level9.jpg', 'map9.tmx', '2023-01-04 09:06:26'),
+(44, 'Baddie Bunker 2', 'level10.jpg', 'map10.tmx', '2023-01-04 09:06:26'),
+(45, 'Pet Detective', 'level11.jpg', 'map11.tmx', '2023-01-04 09:06:26'),
+(46, 'Beauty Spot', 'level12.jpg', 'map12.tmx', '2023-01-04 09:06:26'),
+(47, 'Candy shop', 'level13.jpg', 'map13.tmx', '2023-01-04 09:06:26'),
+(48, 'Sunrise Lobby', 'level14.jpg', 'map14.tmx', '2023-01-04 09:06:26'),
+(49, 'Dark Blue Forest', 'level15.jpg', 'map15.tmx', '2023-01-04 09:06:26'),
+(50, 'After Life', 'level16.jpg', 'map16.tmx', '2023-01-04 09:06:26'),
+(51, 'Save Yourself', 'level17.jpg', 'map17.tmx', '2023-01-04 09:06:26'),
+(52, 'Please Help Me', 'level18.jpg', 'map18.tmx', '2023-01-04 09:06:26'),
+(53, 'Carantania', 'level19.jpg', 'map19.tmx', '2023-01-04 09:06:26'),
+(54, 'Night Invasion', 'level20.jpg', 'map20.tmx', '2023-01-04 09:06:26');
 
 -- --------------------------------------------------------
 
@@ -112,25 +113,26 @@ CREATE TABLE `levels_completed` (
   `id` int(11) NOT NULL,
   `id_level` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
-  `completed` enum('0','1','2') COLLATE utf8_unicode_ci NOT NULL
+  `completed` enum('0','1','2') NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Odloži podatke za tabelo `levels_completed`
 --
 
-INSERT INTO `levels_completed` (`id`, `id_level`, `id_user`, `completed`) VALUES
-(1, 35, 1, '2'),
-(2, 35, 2, '2'),
-(3, 35, 3, '1'),
-(4, 35, 4, '2'),
-(5, 35, 5, '2'),
-(6, 35, 6, '2'),
-(7, 35, 7, '2'),
-(8, 35, 8, '2'),
-(9, 35, 9, '2'),
-(11, 36, 3, '1'),
-(12, 37, 3, '2');
+INSERT INTO `levels_completed` (`id`, `id_level`, `id_user`, `completed`, `created_at`) VALUES
+(1, 35, 1, '2', '2023-01-04 09:08:31'),
+(2, 35, 2, '2', '2023-01-04 09:08:31'),
+(3, 35, 3, '1', '2023-01-04 09:08:31'),
+(4, 35, 4, '2', '2023-01-04 09:08:31'),
+(5, 35, 5, '2', '2023-01-04 09:08:31'),
+(6, 35, 6, '2', '2023-01-04 09:08:31'),
+(7, 35, 7, '2', '2023-01-04 09:08:31'),
+(8, 35, 8, '2', '2023-01-04 09:08:31'),
+(9, 35, 9, '2', '2023-01-04 09:08:31'),
+(11, 36, 3, '1', '2023-01-04 09:08:31'),
+(12, 37, 3, '2', '2023-01-04 09:08:31');
 
 -- --------------------------------------------------------
 
@@ -158,7 +160,7 @@ CREATE TABLE `messages` (
   `id` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
   `id_friend` int(11) NOT NULL,
-  `text` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `text` varchar(255) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -221,7 +223,7 @@ CREATE TABLE `notifications` (
   `id` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
   `id_friend` int(11) NOT NULL,
-  `type` enum('0') COLLATE utf8_unicode_ci NOT NULL,
+  `type` enum('0') NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -244,7 +246,6 @@ INSERT INTO `notifications` (`id`, `id_user`, `id_friend`, `type`, `created_at`)
 (190, 4, 3, '0', '2022-12-31 22:19:51'),
 (212, 1, 2, '0', '2022-12-31 23:47:09'),
 (215, 5, 1, '0', '2022-12-31 23:52:34'),
-(216, 5, 2, '0', '2022-12-31 23:52:37'),
 (217, 5, 6, '0', '2022-12-31 23:52:40'),
 (218, 5, 7, '0', '2022-12-31 23:52:43'),
 (224, 5, 8, '0', '2022-12-31 23:54:10'),
@@ -262,7 +263,7 @@ INSERT INTO `notifications` (`id`, `id_user`, `id_friend`, `type`, `created_at`)
 CREATE TABLE `roles` (
   `id` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
-  `role` enum('ADMIN','USER') COLLATE utf8_unicode_ci NOT NULL
+  `role` enum('ADMIN','USER') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -312,6 +313,58 @@ INSERT INTO `settings` (`id`, `id_user`, `music`, `sound_effect`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Struktura tabele `skins`
+--
+
+CREATE TABLE `skins` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `picture` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Odloži podatke za tabelo `skins`
+--
+
+INSERT INTO `skins` (`id`, `name`, `picture`) VALUES
+(1, 'Basic Skin', 'player-basic'),
+(2, 'Green Skin', 'player-green'),
+(3, 'Blue Skin', 'player-blue'),
+(4, 'Black Skin', 'player-black'),
+(5, 'White Skin', 'player-white'),
+(6, 'Purple Skin', 'player-purple');
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabele `skins_owned`
+--
+
+CREATE TABLE `skins_owned` (
+  `id` int(11) NOT NULL,
+  `id_skin` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Odloži podatke za tabelo `skins_owned`
+--
+
+INSERT INTO `skins_owned` (`id`, `id_skin`, `id_user`) VALUES
+(1, 1, 1),
+(2, 1, 2),
+(3, 1, 3),
+(4, 1, 4),
+(5, 1, 5),
+(6, 1, 6),
+(7, 1, 7),
+(8, 1, 8),
+(9, 1, 9),
+(10, 2, 3);
+
+-- --------------------------------------------------------
+
+--
 -- Struktura tabele `statistics`
 --
 
@@ -348,7 +401,7 @@ CREATE TABLE `tiles` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `size` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Odloži podatke za tabelo `tiles`
@@ -375,7 +428,7 @@ INSERT INTO `tiles` (`id`, `name`, `size`) VALUES
 
 CREATE TABLE `units` (
   `id` int(11) NOT NULL,
-  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `name` varchar(255) NOT NULL,
   `health_points` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -400,13 +453,13 @@ INSERT INTO `units` (`id`, `name`, `health_points`) VALUES
 
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
-  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `username` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `password` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `picture` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `email_confirmed` enum('0','1') COLLATE utf8_unicode_ci NOT NULL,
-  `email_token` varchar(255) COLLATE utf8_unicode_ci NOT NULL
+  `name` varchar(255) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `picture` varchar(255) NOT NULL,
+  `email_confirmed` enum('0','1') NOT NULL,
+  `email_token` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -528,6 +581,20 @@ ALTER TABLE `settings`
   ADD KEY `SETTINGS_USER` (`id_user`);
 
 --
+-- Indeksi tabele `skins`
+--
+ALTER TABLE `skins`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeksi tabele `skins_owned`
+--
+ALTER TABLE `skins_owned`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_skin` (`id_skin`),
+  ADD KEY `id_user` (`id_user`);
+
+--
 -- Indeksi tabele `statistics`
 --
 ALTER TABLE `statistics`
@@ -615,6 +682,18 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT tabele `settings`
 --
 ALTER TABLE `settings`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT tabele `skins`
+--
+ALTER TABLE `skins`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT tabele `skins_owned`
+--
+ALTER TABLE `skins_owned`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
@@ -706,6 +785,13 @@ ALTER TABLE `roles`
 --
 ALTER TABLE `settings`
   ADD CONSTRAINT `SETTINGS_USER` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`);
+
+--
+-- Omejitve za tabelo `skins_owned`
+--
+ALTER TABLE `skins_owned`
+  ADD CONSTRAINT `skins_owned_ibfk_1` FOREIGN KEY (`id_skin`) REFERENCES `skins` (`id`),
+  ADD CONSTRAINT `skins_owned_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`);
 
 --
 -- Omejitve za tabelo `statistics`

@@ -16,11 +16,4 @@ public class LevelsStatisticsEntity {
     private int deaths;
 
     public LevelsStatisticsEntity() {}
-
-    public LevelsStatisticsEntity(String usedTime, int currentScore, int maxScore, int deaths) {
-        this.usedTime = usedTime;
-        this.currentScore = currentScore;
-        this.maxScore = maxScore;
-        this.deaths = deaths;
-    }
 }

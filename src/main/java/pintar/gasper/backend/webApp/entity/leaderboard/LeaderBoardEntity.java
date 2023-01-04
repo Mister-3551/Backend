@@ -17,12 +17,4 @@ public class LeaderBoardEntity {
     private float completed;
 
     public LeaderBoardEntity() {}
-
-    public LeaderBoardEntity(Long id, String username, String picture, int rank, float completed) {
-        this.id = id;
-        this.username = username;
-        this.picture = picture;
-        this.rank = rank;
-        this.completed = completed;
-    }
 }

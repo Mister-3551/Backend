@@ -1,4 +1,4 @@
-package pintar.gasper.backend.webApp.entity.admin.object;
+package pintar.gasper.backend.webApp.entity.admin;
 
 public class AppNavigation {
 

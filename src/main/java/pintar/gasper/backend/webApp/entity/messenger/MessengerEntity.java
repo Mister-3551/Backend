@@ -20,16 +20,4 @@ public class MessengerEntity {
     private int minutes;
 
     public MessengerEntity() {}
-
-    public MessengerEntity(Long id, Long idUser, String text, int years, int months, int weeks, int days, int hours, int minutes) {
-        this.id = id;
-        this.idUser = idUser;
-        this.text = text;
-        this.years = years;
-        this.months = months;
-        this.weeks = weeks;
-        this.days = days;
-        this.hours = hours;
-        this.minutes = minutes;
-    }
 }

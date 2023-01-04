@@ -21,17 +21,4 @@ public class NotificationsEntity {
     private int minutes;
 
     public NotificationsEntity() {}
-
-    public NotificationsEntity(Long id, String username, String picture, int type, int years, int months, int weeks, int days, int hours, int minutes) {
-        this.id = id;
-        this.username = username;
-        this.picture = picture;
-        this.type = type;
-        this.years = years;
-        this.months = months;
-        this.weeks = weeks;
-        this.days = days;
-        this.hours = hours;
-        this.minutes = minutes;
-    }
 }

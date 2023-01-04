@@ -7,16 +7,16 @@ import javax.persistence.Id;
 
 @Entity
 @Data
-public class Tile {
+public class TileEntity {
 
     @Id
     private Long id;
     private String name;
     private int size;
 
-    public Tile() {}
+    public TileEntity() {}
 
-    public Tile(Long id, String name, int size) {
+    public TileEntity(Long id, String name, int size) {
         this.id = id;
         this.name = name;
         this.size = size;
