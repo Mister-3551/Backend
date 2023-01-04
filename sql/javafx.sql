@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
 -- Gostitelj: 127.0.0.1
--- Čas nastanka: 04. jan 2023 ob 15.28
--- Različica strežnika: 10.4.27-MariaDB
--- Različica PHP: 8.0.25
+-- Čas nastanka: 05. jan 2023 ob 00.12
+-- Različica strežnika: 10.4.17-MariaDB
+-- Različica PHP: 7.4.15
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -71,9 +71,9 @@ INSERT INTO `followers_following` (`id`, `id_user`, `id_friend`, `created_at`) V
 
 CREATE TABLE `levels` (
   `id` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `picture` varchar(255) NOT NULL,
-  `map` varchar(255) NOT NULL,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `picture` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `map` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -113,7 +113,7 @@ CREATE TABLE `levels_completed` (
   `id` int(11) NOT NULL,
   `id_level` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
-  `completed` enum('0','1','2') NOT NULL,
+  `completed` enum('0','1','2') COLLATE utf8_unicode_ci NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -160,7 +160,7 @@ CREATE TABLE `messages` (
   `id` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
   `id_friend` int(11) NOT NULL,
-  `text` varchar(255) NOT NULL,
+  `text` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -223,7 +223,7 @@ CREATE TABLE `notifications` (
   `id` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
   `id_friend` int(11) NOT NULL,
-  `type` enum('0') NOT NULL,
+  `type` enum('0') COLLATE utf8_unicode_ci NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -263,7 +263,7 @@ INSERT INTO `notifications` (`id`, `id_user`, `id_friend`, `type`, `created_at`)
 CREATE TABLE `roles` (
   `id` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
-  `role` enum('ADMIN','USER') NOT NULL
+  `role` enum('ADMIN','USER') COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -320,7 +320,7 @@ CREATE TABLE `skins` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `picture` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Odloži podatke za tabelo `skins`
@@ -344,7 +344,7 @@ CREATE TABLE `skins_owned` (
   `id` int(11) NOT NULL,
   `id_skin` int(11) NOT NULL,
   `id_user` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Odloži podatke za tabelo `skins_owned`
@@ -401,7 +401,7 @@ CREATE TABLE `tiles` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `size` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Odloži podatke za tabelo `tiles`
@@ -428,7 +428,7 @@ INSERT INTO `tiles` (`id`, `name`, `size`) VALUES
 
 CREATE TABLE `units` (
   `id` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `health_points` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -453,13 +453,13 @@ INSERT INTO `units` (`id`, `name`, `health_points`) VALUES
 
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `username` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `picture` varchar(255) NOT NULL,
-  `email_confirmed` enum('0','1') NOT NULL,
-  `email_token` varchar(255) NOT NULL
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `username` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `password` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `picture` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `email_confirmed` enum('0','1') COLLATE utf8_unicode_ci NOT NULL,
+  `email_token` varchar(255) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
