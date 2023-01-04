@@ -22,10 +22,7 @@ public class NotificationsService {
     public ArrayList<Notification> getUserNotifications(String idUser) {
         var notifications = notificationsRepository.getUserNotifications(idUser);
         ArrayList<Notification> newNotifications = new ArrayList<>();
-
-        for (NotificationsEntity notification : notifications) {
-            newNotifications.add(new Notification(notification.getId(), notification.getUsername(), notification.getPicture(), notification.getType(), TimeChanger.calculateTime(notification.getYears(), notification.getMonths(), notification.getWeeks(), notification.getDays(), notification.getHours(), notification.getMinutes())));
-        }
+        for (NotificationsEntity notification : notifications) newNotifications.add(new Notification(notification.getId(), notification.getUsername(), notification.getPicture(), notification.getType(), TimeChanger.calculateTime(notification.getYears(), notification.getMonths(), notification.getWeeks(), notification.getDays(), notification.getHours(), notification.getMinutes())));
         return newNotifications;
     }
 

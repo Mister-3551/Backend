@@ -10,9 +10,9 @@ import java.util.ArrayList;
 @Repository
 public interface LevelsRepository extends JpaRepository<LevelsEntity, Long> {
 
-    @Query(value = "SELECT l.id, l.name, l.picture, l.map, CASE WHEN user_levels.completed IS NULL THEN 0 ELSE user_levels.completed END as completed " +
+    @Query(value = "SELECT l.id, l.name, l.picture, l.map, CASE WHEN user_levels.completed IS NULL THEN 0 ELSE user_levels.completed END as completed, user_levels.created_at " +
             "FROM levels l " +
-            "LEFT JOIN (SELECT DISTINCT lc.id_level as id_level, lc.completed as completed " +
+            "LEFT JOIN (SELECT DISTINCT lc.id_level AS id_level, lc.completed AS completed, lc.created_at AS created_at " +
             "           FROM levels_completed lc " +
             "           JOIN users u ON u.id = lc.id_user " +
             "           WHERE u.id = :idUserOrUsername OR u.username = :idUserOrUsername) as user_levels ON user_levels.id_level = l.id", nativeQuery = true)
