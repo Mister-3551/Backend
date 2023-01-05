@@ -1,158 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="30" height="23" tilewidth="70" tileheight="70" infinite="0" nextlayerid="3" nextobjectid="97">
- <tileset firstgid="1" name="industrial" tilewidth="70" tileheight="70" tilecount="112" columns="14">
-  <image source="../../assets/tiles/tiles-dimensions/70x70/industrial.png" width="980" height="560"/>
- </tileset>
- <tileset firstgid="113" name="candy" tilewidth="70" tileheight="70" tilecount="98" columns="14">
-  <image source="../../assets/tiles/tiles-dimensions/70x70/candy.png" width="980" height="490"/>
- </tileset>
- <tileset firstgid="211" name="ice" tilewidth="70" tileheight="70" tilecount="49" columns="7">
-  <image source="../../assets/tiles/tiles-dimensions/70x70/ice.png" width="512" height="512"/>
- </tileset>
- <tileset firstgid="260" name="purple" tilewidth="70" tileheight="70" tilecount="49" columns="7">
-  <image source="../../assets/tiles/tiles-dimensions/70x70/purple.png" width="512" height="512"/>
- </tileset>
- <tileset firstgid="309" name="metal" tilewidth="70" tileheight="70" tilecount="49" columns="7">
-  <image source="../../assets/tiles/tiles-dimensions/70x70/metal.png" width="512" height="512"/>
- </tileset>
- <tileset firstgid="358" name="grass" tilewidth="70" tileheight="70" tilecount="49" columns="7">
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="25" height="20" tilewidth="70" tileheight="70" infinite="0" nextlayerid="5" nextobjectid="14">
+ <tileset firstgid="1" name="grass" tilewidth="70" tileheight="70" tilecount="49" columns="7">
   <image source="../../assets/tiles/tiles-dimensions/70x70/grass.png" width="512" height="512"/>
  </tileset>
- <tileset firstgid="407" name="dirt" tilewidth="70" tileheight="70" tilecount="49" columns="7">
-  <image source="../../assets/tiles/tiles-dimensions/70x70/dirt.png" width="512" height="512"/>
- </tileset>
- <tileset firstgid="456" name="choco" tilewidth="70" tileheight="70" tilecount="49" columns="7">
-  <image source="../../assets/tiles/tiles-dimensions/70x70/choco.png" width="512" height="512"/>
- </tileset>
- <tileset firstgid="505" name="castle" tilewidth="70" tileheight="70" tilecount="49" columns="7">
-  <image source="../../assets/tiles/tiles-dimensions/70x70/castle.png" width="512" height="512"/>
- </tileset>
- <tileset firstgid="554" name="cake" tilewidth="70" tileheight="70" tilecount="49" columns="7">
-  <image source="../../assets/tiles/tiles-dimensions/70x70/cake.png" width="512" height="512"/>
- </tileset>
- <tileset firstgid="603" name="decorations" tilewidth="70" tileheight="70" tilecount="841" columns="29">
-  <image source="../../assets/tiles/tiles-dimensions/70x70/decorations.png" width="2048" height="2048"/>
- </tileset>
- <tileset firstgid="1444" name="player-stand" tilewidth="14" tileheight="34" tilecount="1" columns="1">
+ <tileset firstgid="50" name="player-stand" tilewidth="14" tileheight="34" tilecount="1" columns="1">
   <image source="../skins/player/player-stand.png" width="14" height="34"/>
  </tileset>
- <layer id="1" name="Map" width="30" height="23">
+ <layer id="1" name="Map" width="25" height="20">
   <data encoding="base64" compression="zlib">
-   eJzt1aEOwjAQgOE2ZGARIHkGHLwBHgUsKNw2wxtMT/MWGDB4FC/AU6BRoLiGNlzK3bgtKxgu+TMSln6MbKtS/+GmA7WI2oHNPhQR9QLZ2EygKXFO0zY2Y2gJpdAMmkMLaChca42SmmVJXTzUfeKSmNGHNbj7TnLddSf0fefPynPL7Ct0tt0rOhutVA6l+v073/bngj7fKtjGzLR9xjR9Tdgucyl7h/JNvD73f0pd396jKFNqS1xsY5czOfvAn8q6zs71qzKTso813brjbPwO6Sr+/TYJ8BvwGJd65kKPcRPmeR81sP6WORq30LQ9sMexPbp9z2X2P7MnZuq5P8aEe2KOznV2/sWKH/UAWN5U5g==
+   eJxjYBgFo4C2QAoNs9LBTpZRe0btGbWHInvQ860UHewdBZQBADNAATw=
   </data>
  </layer>
  <objectgroup id="2" name="Objects">
-  <object id="31" name="Player" gid="1444" x="91.5" y="488" width="33" height="51.5"/>
-  <object id="50" x="1750" y="490">
-   <polygon points="0,0 0,280 210,280 210,210"/>
+  <object id="1" x="210" y="420">
+   <polygon points="0,0 0,70 280,70 280,0"/>
   </object>
-  <object id="53" x="2030" y="1120">
-   <polygon points="0,0 -419.906,0 -419.906,69.9648 -69.9844,69.9648 -0.130406,23.3361 0,0 0,0"/>
+  <object id="2" x="490" y="420">
+   <polygon points="0,0 0,140 70,140 70,70 0,0"/>
   </object>
-  <object id="56" x="1330" y="700">
-   <polygon points="0,0 -70,0 -210,140 0,140"/>
+  <object id="3" x="560" y="490">
+   <polygon points="0,0 0,140 70,140 70,70"/>
   </object>
-  <object id="59" x="910" y="1050">
-   <polygon points="0,0 -280,0 -280,70 0,70"/>
+  <object id="4" x="630" y="560">
+   <polygon points="0,0 0,140 70,140 70,70"/>
   </object>
-  <object id="60" x="700" y="1050">
-   <polygon points="0,0 -140,-140 -140,0"/>
+  <object id="5" x="700" y="630">
+   <polygon points="0,0 0,140 70,140 70,70"/>
   </object>
-  <object id="62" x="420" y="840">
-   <polygon points="0,0 -70,0 -70,-140 0,-70"/>
+  <object id="6" x="770" y="700">
+   <polygon points="0,0 0,140 70,140 70,70"/>
   </object>
-  <object id="66" x="0" y="1260">
-   <polygon points="0,0 0,210 210,210"/>
+  <object id="7" x="840" y="770">
+   <polygon points="0,0 0,140 70,140 70,70"/>
   </object>
-  <object id="67" x="0" y="1470">
-   <polygon points="0,0 0,140 2100,140 2100,0"/>
+  <object id="8" x="910" y="840">
+   <polygon points="0,0 0,140 70,140 70,70"/>
   </object>
-  <object id="68" x="0" y="490">
-   <polygon points="0,0 0,70 1750,70 1750,0"/>
+  <object id="9" x="980" y="910">
+   <polygon points="0,0 0,140 70,140 70,70"/>
   </object>
-  <object id="69" x="490" y="490">
-   <polygon points="0,0 70,-70 700,-70 700,0 0,0"/>
+  <object id="10" x="1050" y="980">
+   <polygon points="0,0 0,140 70,140 70,70"/>
   </object>
-  <object id="70" x="840" y="140">
-   <polygon points="0,0 0,140 -140,140"/>
+  <object id="11" x="1120" y="1050">
+   <polygon points="0,0 0,70 350,70 350,0 0,0"/>
   </object>
-  <object id="71" x="840" y="280">
-   <polygon points="0,0 -140,0 -140,70 0,70"/>
+  <object id="12" x="1120" y="1050">
+   <polygon points="0,0 0,70 350,70 350,0 0,0"/>
   </object>
-  <object id="72" x="700" y="280">
-   <polygon points="0,0 -140,140 0,140"/>
-  </object>
-  <object id="73" x="700" y="350">
-   <polygon points="0,0 70,0 70,70 0,70"/>
-  </object>
-  <object id="74" x="840" y="140">
-   <polygon points="0,0 0,140 350,140 350,0"/>
-  </object>
-  <object id="75" x="1190" y="280">
-   <polygon points="0,0 140,0 0,-140"/>
-  </object>
-  <object id="76" x="1260" y="280">
-   <polygon points="0,0 70,0 140,70 0,70 0,0"/>
-  </object>
-  <object id="77" x="1750" y="770">
-   <polygon points="0,0 0,70 210,70 210,0"/>
-  </object>
-  <object id="78" x="1820" y="840">
-   <polygon points="0,0 0,70 140,70 140,0"/>
-  </object>
-  <object id="79" x="1890" y="910">
-   <polygon points="0,0 0,70 70,70 70,0 0,0"/>
-  </object>
-  <object id="80" x="1610" y="560">
-   <polygon points="0,0 0,140 140,140 140,0"/>
-  </object>
-  <object id="81" x="1680" y="700">
-   <polygon points="0,0 0,70 70,70 70,0"/>
-  </object>
-  <object id="82" x="210" y="700">
-   <polygon points="0,0 -70,70 140,70 140,0"/>
-  </object>
-  <object id="83" x="140" y="770">
-   <polygon points="0,0 70,0 70,420 0,420"/>
-  </object>
-  <object id="84" x="420" y="770">
-   <polygon points="0,0 0,140 140,140"/>
-  </object>
-  <object id="85" x="490" y="910">
-   <polygon points="0,0 0,70 70,70 70,0"/>
-  </object>
-  <object id="86" x="1050" y="910">
-   <polygon points="0,0 70,-70 70,70 0,70"/>
-  </object>
-  <object id="87" x="1120" y="840">
-   <polygon points="0,0 70,0 70,70 0,70"/>
-  </object>
-  <object id="88" x="910" y="1050">
-   <polygon points="0,0 0,70 70,70 70,-70"/>
-  </object>
-  <object id="89" x="980" y="1050">
-   <polygon points="0,0 70,0 70,-140 0,-70"/>
-  </object>
-  <object id="90" x="1470" y="840">
-   <polygon points="0,0 140,140 0,140 0,0"/>
-  </object>
-  <object id="91" x="1470" y="980">
-   <polygon points="0,0 0,70 140,70 140,0"/>
-  </object>
-  <object id="92" x="1610" y="980">
-   <polygon points="0,0 0,140 140,140"/>
-  </object>
-  <object id="93" x="1610" y="1050">
-   <polygon points="0,0 -70,0 -70,70 0,70"/>
-  </object>
-  <object id="94" x="1330" y="700">
-   <polygon points="0,0 0,140 140,140"/>
-  </object>
-  <object id="95" x="1330" y="840">
-   <polygon points="0,0 0,70 140,70 140,0"/>
-  </object>
-  <object id="96" x="1400" y="910">
-   <polygon points="0,0 0,70 70,70 70,0"/>
-  </object>
+  <object id="13" name="Player" gid="50" x="221" y="413" width="44" height="68"/>
  </objectgroup>
 </map>
