@@ -46,8 +46,8 @@ public class FileService {
         return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG).body(image);
     }
 
-    public ResponseEntity<byte[]> getSkinPicture(String filename) throws Exception {
-        byte[] image = Files.readAllBytes(Paths.get(skins + "/" + filename));
+    public ResponseEntity<byte[]> getSkinPicture(String character, String type, String filename) throws Exception {
+        byte[] image = Files.readAllBytes(Paths.get(skins + "/" + character + "/" + type + "/" + filename));
         return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG).body(image);
     }
 

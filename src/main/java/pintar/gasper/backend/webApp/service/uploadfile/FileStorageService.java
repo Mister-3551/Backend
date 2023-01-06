@@ -22,6 +22,11 @@ public class FileStorageService {
     private final Path tilesPictures70X70;
     private final Path levelMaps;
 
+    //TODO get data from db
+    private final String[] playerSkins = {
+            "basic", "green", "blue", "black", "white", "purple"
+    };
+
     @Autowired
     public FileStorageService(Environment environment) throws Exception {
         this.profilePictures = Paths.get(environment.getProperty("app.file.upload-dir-profile-pictures", "./files/pictures/profile-pictures")).toAbsolutePath().normalize();
@@ -41,6 +46,11 @@ public class FileStorageService {
         Files.createDirectories(tilesDimensions);
         Files.createDirectories(tilesPictures70X70);
         Files.createDirectories(levelMaps);
+
+        Files.createDirectories(Paths.get("./files/pictures/skins/player"));
+        Files.createDirectories(Paths.get("./files/pictures/skins/enemy"));
+        Files.createDirectories(Paths.get("./files/pictures/skins/hostage"));
+        for (String skin : playerSkins) Files.createDirectories(Paths.get("./files/pictures/skins/player/" + skin));
     }
 
     public String storePicture(String id, MultipartFile file, String type) throws Exception {
@@ -60,9 +70,15 @@ public class FileStorageService {
                 fileName = "map" + id + "." + getFileExtension(file.getOriginalFilename());
                 targetLocation = this.levelMaps.resolve(fileName);
             }
+            //TODO
             case "tilesPictures" -> {
                 fileName = file.getOriginalFilename() + id + "." + getFileExtension(file.getOriginalFilename());
-                targetLocation = this.levelMaps.resolve(fileName);
+                targetLocation = this.tiles.resolve(fileName);
+            }
+            //TODO
+            case "skins" -> {
+                fileName = file.getOriginalFilename() + id + "." + getFileExtension(file.getOriginalFilename());
+                targetLocation = this.skins.resolve(fileName);
             }
             default -> {
                 return "";
