@@ -27,6 +27,10 @@ public class FileStorageService {
             "basic", "green", "blue", "black", "white", "purple"
     };
 
+    private final String[] enemySkins = {
+            "basic"
+    };
+
     @Autowired
     public FileStorageService(Environment environment) throws Exception {
         this.profilePictures = Paths.get(environment.getProperty("app.file.upload-dir-profile-pictures", "./files/pictures/profile-pictures")).toAbsolutePath().normalize();
@@ -51,6 +55,7 @@ public class FileStorageService {
         Files.createDirectories(Paths.get("./files/pictures/skins/enemy"));
         Files.createDirectories(Paths.get("./files/pictures/skins/hostage"));
         for (String skin : playerSkins) Files.createDirectories(Paths.get("./files/pictures/skins/player/" + skin));
+        for (String skin : enemySkins) Files.createDirectories(Paths.get("./files/pictures/skins/enemy/" + skin));
     }
 
     public String storePicture(String id, MultipartFile file, String type) throws Exception {
