@@ -86,7 +86,8 @@ public class FileStorageService {
                 targetLocation = this.skins.resolve(fileName);
             }
             default -> {
-                return "";
+                fileName = "";
+                targetLocation = null;
             }
         }
 
