@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gostitelj: 127.0.0.1
--- Čas nastanka: 05. jan 2023 ob 00.12
+-- Čas nastanka: 09. jan 2023 ob 00.02
 -- Različica strežnika: 10.4.17-MariaDB
 -- Različica PHP: 7.4.15
 
@@ -467,7 +467,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `username`, `email`, `password`, `picture`, `email_confirmed`, `email_token`) VALUES
-(1, 'Gasper Pintar', 'Mister-3551', 'gasper@example.com', 'eee', '1-profile-picture.jpg', '0', ''),
+(1, 'Gasper Pintar', 'q', 'gasper@example.com', 'q', '1-profile-picture.jpg', '0', ''),
 (2, 'Mr junk', 'Mr-junk', 'mrjunk@example.com', 'qwqwqwqw', 'basic-picture.jpg', '0', ''),
 (3, 'Urban Pintar', 'urban4', 'urban@example.com', 'qwqwqwqw', '3-profile-picture.jpg', '0', ''),
 (4, 'Furi Naturi', 'furi-naturi', 'furinaturi@example.com', 'qwqwqwqw', 'basic-picture.jpg', '0', ''),
