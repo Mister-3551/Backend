@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="25" height="20" tilewidth="70" tileheight="70" infinite="0" nextlayerid="5" nextobjectid="31">
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="left-down" width="100" height="20" tilewidth="70" tileheight="70" infinite="0" nextlayerid="5" nextobjectid="58">
  <tileset firstgid="1" name="player-stand" tilewidth="14" tileheight="34" tilecount="1" columns="1">
   <image source="../skins/player/player-stand.png" width="14" height="34"/>
  </tileset>
@@ -34,40 +34,50 @@
  <tileset firstgid="51" name="enemy-stand" tilewidth="14" tileheight="34" tilecount="1" columns="1">
   <image source="../skins/enemy/enemy-stand.png" width="14" height="34"/>
  </tileset>
- <layer id="1" name="Map" width="25" height="20">
+ <layer id="1" name="Map" width="100" height="20">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFIw1I48BsVLRDFQdmpaI9uOygpj347KCWPYTsoIY9xNhB7fjBZ/dgtodQvqCGPcTox2UPtrxLjB20CPfBkM9xlWekYGLzx2DHAMpZFwQ=
+   eJzt2TEKwCAQBdG9gCfw/ve010IQF8dlHvw+MEmz6RHRHWpisAeLPVjswWIPFnuw2IPFHiz2YLEHiz1YqvfIvA1l3J6q9Khymzt95jZNd/z4Dv1s9/3ag8UeLPZgef1f0q0bQDUbhg==
   </data>
  </layer>
  <objectgroup id="2" name="Objects">
-  <object id="13" name="Player" gid="1" x="151" y="341" width="50" height="70"/>
-  <object id="21" x="0" y="350">
-   <polygon points="0,0 420,0 420,420 0,420"/>
+  <object id="13" name="Player" gid="1" x="263.485" y="211.606" width="50" height="70"/>
+  <object id="30" name="Enemy" gid="51" x="1140.27" y="987.485" width="50" height="70"/>
+  <object id="35" name="Enemy" gid="51" x="1563" y="451" width="50" height="70"/>
+  <object id="36" name="Enemy" gid="51" x="917" y="985" width="50" height="70"/>
+  <object id="38" name="9" x="0" y="0">
+   <polygon points="0,0 7000,0 7000,70 0,70"/>
   </object>
-  <object id="22" x="420" y="350">
-   <polygon points="0,0 0,490 490,490"/>
+  <object id="39" name="8" x="0" y="70">
+   <polygon points="0,0 0,1330 70,1330 70,0"/>
   </object>
-  <object id="23" x="630" y="980">
-   <polygon points="0,0 0,70 770,70 770,0"/>
+  <object id="40" name="7" x="70" y="1330">
+   <polygon points="0,0 6930,0 6930,70 0,70"/>
   </object>
-  <object id="24" x="560" y="910">
-   <polygon points="0,0 350,0 350,70 0,70"/>
+  <object id="41" name="6" x="7000" y="1330">
+   <polygon points="0,0 0,-1260 -70,-1260 -70,0"/>
   </object>
-  <object id="25" x="490" y="910">
-   <polygon points="0,0 0,-70 420,-70 420,0"/>
+  <object id="42" name="Enemy" gid="51" x="5487" y="733" width="50" height="70"/>
+  <object id="43" name="5" x="5460" y="840">
+   <polygon points="0,0 0,70 420,70 420,0"/>
   </object>
-  <object id="26" x="910" y="840">
-   <polygon points="0,0 140,140 0,140"/>
+  <object id="44" name="4" x="6370" y="1050">
+   <polygon points="0,0 0,70 350,70 350,0"/>
   </object>
-  <object id="27" x="1750" y="1190">
-   <polygon points="0,0 0,210 -1750,210 -1750,0 0,0"/>
+  <object id="45" name="3" x="3430" y="980">
+   <polygon points="0,0 490,0 490,-70 0,-70"/>
   </object>
-  <object id="28" x="560" y="1190">
-   <polygon points="0,0 -280,0 -280,-280"/>
+  <object id="46" name="2" x="3850" y="910">
+   <polygon points="0,0 0,-70 350,-70 350,0"/>
   </object>
-  <object id="29" x="280" y="910">
-   <polygon points="0,0 -280,0 -280,280 0,280"/>
+  <object id="48" name="1" x="910" y="980">
+   <polygon points="0,0 0,70 280,70 280,0"/>
   </object>
-  <object id="30" name="Enemy" gid="51" x="289" y="339" width="50" height="70"/>
+  <object id="49" name="Enemy" gid="51" x="6487" y="1049" width="50" height="70"/>
+  <object id="52" name="Enemy" gid="51" x="6351" y="633" width="50" height="70"/>
+  <object id="53" name="Enemy" gid="51" x="5951" y="613" width="50" height="70"/>
+  <object id="54" name="Enemy" gid="51" x="4867" y="301" width="50" height="70"/>
+  <object id="55" name="Enemy" gid="51" x="3943" y="497" width="50" height="70"/>
+  <object id="56" name="Enemy" gid="51" x="3431" y="569" width="50" height="70"/>
+  <object id="57" name="Enemy" gid="51" x="2431" y="697" width="50" height="70"/>
  </objectgroup>
 </map>
