@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="left-down" width="100" height="20" tilewidth="70" tileheight="70" infinite="0" nextlayerid="5" nextobjectid="61">
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="left-down" width="150" height="20" tilewidth="70" tileheight="70" infinite="0" nextlayerid="5" nextobjectid="61">
  <tileset firstgid="1" name="player-stand" tilewidth="14" tileheight="34" tilecount="1" columns="1">
   <image source="../skins/player/player-stand.png" width="14" height="34"/>
  </tileset>
@@ -40,53 +40,53 @@
  <tileset firstgid="52" name="hostage-stand" tilewidth="14" tileheight="34" tilecount="1" columns="1">
   <image source="../skins/hostage/hostage-stand.png" trans="ff00ff" width="14" height="34"/>
  </tileset>
- <layer id="1" name="Map" width="100" height="20">
+ <layer id="1" name="Map" width="150" height="20">
   <data encoding="base64" compression="zlib">
-   eJzt2TEKwCAQBdG9gCfw/ve010IQF8dlHvw+MEmz6RHRHWpisAeLPVjswWIPFnuw2IPFHiz2YLEHiz1YqvfIvA1l3J6q9Khymzt95jZNd/z4Dv1s9/3ag8UeLPZgef1f0q0bQDUbhg==
+   eJzt0skJgEAQBVETMILJP0/vIoxKLzVaD/rgya/Utt0zPO/BzVS9RzU6u+roVzW6u4reIgZSVxF7xNDd1bh4tqv1dXaV8X4xdHcVvUMMdqUMlK6itoiB1FXEHjFQuqruV7nsag2Z35rxLwldVfZL95VvI3QVueWp/XSK8feu9M7s39uVMpC6itgkBrtSBkpXVTu8b90B4+pzRg==
   </data>
  </layer>
  <objectgroup id="2" name="Objects">
-  <object id="13" name="Player" gid="1" x="263.485" y="211.606" width="50" height="70"/>
-  <object id="30" name="Enemy" gid="51" x="1140.27" y="987.485" width="50" height="70"/>
-  <object id="35" name="Enemy" gid="51" x="1563" y="451" width="50" height="70"/>
-  <object id="36" name="Enemy" gid="51" x="917" y="985" width="50" height="70"/>
-  <object id="38" name="9" x="0" y="0">
+  <object id="13" name="Player" gid="1" x="1929.49" y="1323.61" width="50" height="70"/>
+  <object id="30" name="Enemy" gid="51" x="2890.27" y="987.485" width="50" height="70"/>
+  <object id="35" name="Enemy" gid="51" x="3313" y="451" width="50" height="70"/>
+  <object id="36" name="Enemy" gid="51" x="2667" y="985" width="50" height="70"/>
+  <object id="38" name="9" x="1750" y="0">
    <polygon points="0,0 7000,0 7000,70 0,70"/>
   </object>
-  <object id="39" name="8" x="0" y="70">
+  <object id="39" name="8" x="1750" y="70">
    <polygon points="0,0 0,1330 70,1330 70,0"/>
   </object>
-  <object id="40" name="7" x="70" y="1330">
+  <object id="40" name="7" x="1820" y="1330">
    <polygon points="0,0 6930,0 6930,70 0,70"/>
   </object>
-  <object id="41" name="6" x="7000" y="1330">
+  <object id="41" name="6" x="8750" y="1330">
    <polygon points="0,0 0,-1260 -70,-1260 -70,0"/>
   </object>
-  <object id="42" name="Enemy" gid="51" x="5487" y="733" width="50" height="70"/>
-  <object id="43" name="5" x="5460" y="840">
+  <object id="42" name="Enemy" gid="51" x="7237" y="733" width="50" height="70"/>
+  <object id="43" name="5" x="7210" y="840">
    <polygon points="0,0 0,70 420,70 420,0"/>
   </object>
-  <object id="44" name="4" x="6370" y="1050">
+  <object id="44" name="4" x="8120" y="1050">
    <polygon points="0,0 0,70 350,70 350,0"/>
   </object>
-  <object id="45" name="3" x="3430" y="980">
+  <object id="45" name="3" x="5180" y="980">
    <polygon points="0,0 490,0 490,-70 0,-70"/>
   </object>
-  <object id="46" name="2" x="3850" y="910">
+  <object id="46" name="2" x="5600" y="910">
    <polygon points="0,0 0,-70 350,-70 350,0"/>
   </object>
-  <object id="48" name="1" x="910" y="980">
+  <object id="48" name="1" x="2660" y="980">
    <polygon points="0,0 0,70 280,70 280,0"/>
   </object>
-  <object id="49" name="Enemy" gid="51" x="6487" y="1049" width="50" height="70"/>
-  <object id="52" name="Enemy" gid="51" x="6351" y="633" width="50" height="70"/>
-  <object id="53" name="Enemy" gid="51" x="5951" y="613" width="50" height="70"/>
-  <object id="54" name="Enemy" gid="51" x="4867" y="301" width="50" height="70"/>
-  <object id="55" name="Enemy" gid="51" x="3943" y="497" width="50" height="70"/>
-  <object id="56" name="Enemy" gid="51" x="3431" y="569" width="50" height="70"/>
-  <object id="57" name="Enemy" gid="51" x="2431" y="697" width="50" height="70"/>
-  <object id="58" name="Hostage" gid="52" x="3593" y="1303" width="50" height="70"/>
-  <object id="59" name="Hostage" gid="52" x="4011" y="1291" width="50" height="70"/>
-  <object id="60" name="Hostage" gid="52" x="4153" y="817" width="50" height="70"/>
+  <object id="49" name="Enemy" gid="51" x="8237" y="1049" width="50" height="70"/>
+  <object id="52" name="Enemy" gid="51" x="8101" y="633" width="50" height="70"/>
+  <object id="53" name="Enemy" gid="51" x="7701" y="613" width="50" height="70"/>
+  <object id="54" name="Enemy" gid="51" x="6617" y="301" width="50" height="70"/>
+  <object id="55" name="Enemy" gid="51" x="5693" y="497" width="50" height="70"/>
+  <object id="56" name="Enemy" gid="51" x="5181" y="569" width="50" height="70"/>
+  <object id="57" name="Enemy" gid="51" x="4181" y="697" width="50" height="70"/>
+  <object id="58" name="Hostage" gid="52" x="5343" y="1303" width="50" height="70"/>
+  <object id="59" name="Hostage" gid="52" x="5761" y="1291" width="50" height="70"/>
+  <object id="60" name="Hostage" gid="52" x="5903" y="817" width="50" height="70"/>
  </objectgroup>
 </map>
