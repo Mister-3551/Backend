@@ -9,6 +9,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.Arrays;
 
 @Service
 public class FileStorageService {
@@ -28,6 +29,10 @@ public class FileStorageService {
     };
 
     private final String[] enemySkins = {
+            "basic"
+    };
+
+    private final String[] hostageSkins = {
             "basic"
     };
 
@@ -56,6 +61,7 @@ public class FileStorageService {
         Files.createDirectories(Paths.get("./files/pictures/skins/hostage"));
         for (String skin : playerSkins) Files.createDirectories(Paths.get("./files/pictures/skins/player/" + skin));
         for (String skin : enemySkins) Files.createDirectories(Paths.get("./files/pictures/skins/enemy/" + skin));
+        for (String skin : hostageSkins) Files.createDirectories(Paths.get("./files/pictures/skins/hostage/" + skin));
     }
 
     public String storePicture(String id, MultipartFile file, String type) throws Exception {
