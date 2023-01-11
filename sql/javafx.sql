@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gostitelj: 127.0.0.1
--- Čas nastanka: 09. jan 2023 ob 00.02
+-- Čas nastanka: 12. jan 2023 ob 00.18
 -- Različica strežnika: 10.4.17-MariaDB
 -- Različica PHP: 7.4.15
 
@@ -360,7 +360,8 @@ INSERT INTO `skins_owned` (`id`, `id_skin`, `id_user`) VALUES
 (7, 1, 7),
 (8, 1, 8),
 (9, 1, 9),
-(10, 2, 3);
+(10, 2, 3),
+(12, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -694,7 +695,7 @@ ALTER TABLE `skins`
 -- AUTO_INCREMENT tabele `skins_owned`
 --
 ALTER TABLE `skins_owned`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT tabele `statistics`
